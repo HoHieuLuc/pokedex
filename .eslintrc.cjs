@@ -30,6 +30,12 @@ module.exports = {
         '@typescript-eslint/no-unsafe-call': 'off',
       },
     },
+    {
+      files: ['scripts/**/*'],
+      rules: {
+        'no-console': 'off',
+      }
+    }
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
