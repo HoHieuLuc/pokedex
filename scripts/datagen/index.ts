@@ -1,3 +1,3 @@
-import generateData from './generate-data';
+import generateData2 from './generate-data';
 
-void generateData();
+void generateData2();

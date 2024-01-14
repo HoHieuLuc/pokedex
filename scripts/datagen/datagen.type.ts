@@ -1,7 +1,18 @@
+export interface ResourceList<T> {
+  count: number;
+  next: string;
+  previous: string;
+  results: Array<T>;
+}
+
+export interface ResourceData {
+  name: string;
+}
+
 export interface PokemonRaw {
   abilities: Ability[];
   baseExperience: number;
-  forms: Species[];
+  forms: ResourceData[];
   gameIndices: GameIndex[];
   height: number;
   // heldItems: any[];
@@ -21,23 +32,22 @@ export interface PokemonRaw {
 }
 
 interface Ability {
-  ability: Species;
+  ability: ResourceData;
   isHidden: boolean;
   slot: number;
 }
 
 interface Species {
   name: string;
-  url: string;
 }
 
 interface GameIndex {
   gameIndex: number;
-  version: Species;
+  version: ResourceData;
 }
 
 interface Move {
-  move: Species;
+  move: ResourceData;
   versionGroupDetails: VersionGroupDetail[];
 }
 
@@ -49,14 +59,12 @@ interface VersionGroupDetail {
 
 interface MoveLearnMethod {
   name: MoveLearnMethodName;
-  url: string;
 }
 
 type MoveLearnMethodName = 'machine' | 'level-up' | 'tutor';
 
 interface VersionGroup {
   name: VersionGroupName;
-  url: string;
 }
 
 type VersionGroupName =
@@ -221,7 +229,7 @@ interface SpritesBlackWhite {
 }
 
 interface SpritesGenerationVI {
-  [key: string]: SpritesHome
+  [key: string]: SpritesHome;
 }
 
 interface SpritesGenerationVII {
@@ -241,10 +249,10 @@ interface SpritesGenerationVIII {
 interface Stat {
   baseStat: number;
   effort: number;
-  stat: Species;
+  stat: ResourceData;
 }
 
 interface Type {
   slot: number;
-  type: Species;
+  type: ResourceData;
 }

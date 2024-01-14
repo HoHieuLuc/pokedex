@@ -1,39 +1,29 @@
-import { ResourceList } from './resource-list.type';
+import fs from 'fs-extra';
 import { getPath } from '../utils/get-path';
 import axiosClient from '../../src/lib/axios-client';
-import fs from 'fs-extra';
-import { PokemonRaw } from './pokemon-raw.type';
+import datagenService from './datagen.service';
+import { PokemonRaw, ResourceData, ResourceList } from './datagen.type';
+import toChunks from '../utils/to-chunks';
+import cache from '../utils/cache';
+import { createLogger } from '../utils/logger';
 
-interface PokemonListItem {
-  name: string;
-  url: string;
-}
-
-const getPokemon = async (name: string) => {
-  try {
-    const { data } = await axiosClient.get<PokemonRaw>(`pokemon/${name}`);
-    return data;
-  } catch {
-    console.error(`Get pokemon ${name} failed`);
-    return null;
-  }
-};
-
-const limit = 1025;
+const logger = createLogger('datagen');
+const limit = 999999;
 
 const generateData = async () => {
   const saveDir = getPath('src/data');
-  const saveFile = `${saveDir}/pokemon.json`;
+  // const saveFile = `${saveDir}/pokemon.json`;
 
-  if (fs.existsSync(saveFile)) {
-    console.log('Data already exists');
-    return;
-  }
+  // if (fs.existsSync(saveFile)) {
+  //   logger.default.success('Data already exists');
+  //   return;
+  // }
 
   await fs.ensureDir(saveDir);
+  await fs.ensureDir(cache.CACHE_DIR);
 
-  console.log('Getting all pokemons...');
-  const { data } = await axiosClient.get<ResourceList<PokemonListItem>>('pokemon', {
+  logger.default.log('Getting all pokemons...');
+  const { data } = await axiosClient.get<ResourceList<ResourceData>>('pokemon', {
     params: {
       limit,
     },
@@ -41,19 +31,9 @@ const generateData = async () => {
 
   const pokemons = data.results;
   // Split pokemons into chunks
-  const pokemonsChunks = pokemons.reduce<PokemonListItem[][]>(
-    (chunks, pokemon, index) => {
-      const chunkIndex = Math.floor(index / 50);
-      if (!chunks[chunkIndex]) {
-        chunks[chunkIndex] = [];
-      }
-      chunks[chunkIndex].push(pokemon);
-      return chunks;
-    },
-    []
-  );
+  const pokemonsChunks = toChunks(pokemons, 50);
 
-  console.log('Getting pokemon details...');
+  logger.default.log('Getting pokemon details...');
 
   const pokemonDetails: Array<PokemonRaw> = [];
 
@@ -61,20 +41,20 @@ const generateData = async () => {
   for (const chunk of pokemonsChunks) {
     await Promise.all(
       chunk.map(async (pokemon) => {
-        const data = await getPokemon(pokemon.name);
+        const data = await datagenService.getPokemon(pokemon.name);
         progress += 1;
-        console.log(`${progress}/${pokemons.length}`);
+        logger.interactive.await(`${progress}/${pokemons.length}`);
         if (data !== null) {
           pokemonDetails.push(data);
         }
         return data;
-      })
+      }),
     );
   }
 
-  console.log(`${pokemonDetails.length} pokemons loaded`);
+  logger.default.success(`${pokemonDetails.length} pokemons loaded`);
 
-  const savedPokemonDetails = pokemonDetails.map(pokemon => ({
+  const savedPokemonDetails = pokemonDetails.map((pokemon) => ({
     id: pokemon.id,
     name: pokemon.name,
     types: pokemon.types,
@@ -84,17 +64,17 @@ const generateData = async () => {
     weight: pokemon.weight,
   }));
 
-  console.log('Writing data...');
+  logger.default.log('Writing data...');
   await fs.writeJSON(`${saveDir}/pokemon.json`, savedPokemonDetails, {
     spaces: 0,
-    replacer: (_, value: unknown) => {
+    replacer: (_key, value: unknown) => {
       if (value === null) {
         return undefined;
       }
       return value;
-    }
+    },
   });
-  console.log('All done!');
+  logger.default.success('All done!');
 };
 
 export default generateData;

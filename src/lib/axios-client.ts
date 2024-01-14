@@ -8,8 +8,11 @@ const instance = axios.create({
 const axiosClient = applyCaseMiddleware(instance, {
   caseFunctions: {
     camel: (input) => {
-      return (input.charAt(0).toLowerCase() + input.slice(1)).replace(/[_](.)/g, (match, group1: string) => group1.toUpperCase());
-    }
+      return (input.charAt(0).toLowerCase() + input.slice(1)).replace(
+        /[_](.)/g,
+        (match, group1: string) => group1.toUpperCase(),
+      );
+    },
   },
 });
 
