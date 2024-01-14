@@ -1,6 +1,5 @@
-import Navbar from './_components/Navbar/Navbar';
-import Text from './_components/Text/Text';
-import './theme.css';
+import { Navbar, Text } from '../_components';
+import '../theme.css';
 import classes from './layout.module.css';
 
 interface Props {
@@ -9,16 +8,16 @@ interface Props {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className={classes.root}>
+    <div className='root'>
       <Navbar align='center' justify='space-around'>
-        <Text variant='white' fz={40}>
-          POKéDEX
+        <Text variant='white' className={classes.title}>
+          POKéDEX 1
         </Text>
-        <Text variant='white' fz={40}>
+        <Text variant='white' className={classes.title}>
           TABLE OF CONTENTS
         </Text>
       </Navbar>
-      <div className={classes.main}>{children}</div>
+      <div className='main'>{children}</div>
       <Navbar align='end' justify='end'>
         <Text variant='white' fz={30}>
           Button

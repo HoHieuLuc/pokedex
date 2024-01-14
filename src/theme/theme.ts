@@ -1,6 +1,7 @@
 'use client';
 
 import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 import { DEFAULT_THEME, createTheme } from '@mantine/core';
 import { pixelifySans } from './fonts';
 

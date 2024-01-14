@@ -7,4 +7,20 @@
   --fire-red-orange-shadow: #ce4239;
   --fire-red-black: #000;
   --fire-red-black-shadow: #e7dec6;
+
+  --fire-red-fz-heading: 50px;
+  --fire-red-fz-md: 45px;
+}
+
+.root {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex-grow: 1;
+  background-color: #eff7f7;
+  background-image: linear-gradient(to bottom, white 5px, transparent 5px);
+  background-size: 100% 10px;
 }

@@ -1,7 +1,14 @@
 .root {
   line-height: normal;
+  color: var(--fire-red-black);
+  text-shadow: var(--fire-red-black-shadow);
+
   &[data-variant="white"] {
     color: var(--fire-red-white);
     text-shadow: var(--fire-red-white-shadow) 0.03em 0.03em;
+  }
+  &[data-variant="orange"] {
+    color: var(--fire-red-orange);
+    text-shadow: var(--fire-red-orange-shadow) 0.03em 0.03em;
   }
 }

@@ -23,7 +23,7 @@ export default function Providers({ children }: Props) {
       persistOptions={{ persister, maxAge: 1000 * 60 * 60 * 24 * 30 }}
     >
       <MantineProvider theme={theme}>{children}</MantineProvider>
-      <ReactQueryDevtools />
+      <ReactQueryDevtools buttonPosition='bottom-left' />
     </PersistQueryClientProvider>
   );
 }
