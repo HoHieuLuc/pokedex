@@ -1,11 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import queryClient from '@/lib/query-client';
-import { createIDBPersister } from '@/lib/query-client-persister';
 import { MantineProvider } from '@mantine/core';
-import { theme } from '@/theme';
+import { theme } from '@/theme/theme';
+import { createIDBPersister } from '@/lib/query-client-persister';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 
 interface Props {
   children: React.ReactNode;
@@ -22,6 +23,7 @@ export default function Providers({ children }: Props) {
       persistOptions={{ persister, maxAge: 1000 * 60 * 60 * 24 * 30 }}
     >
       <MantineProvider theme={theme}>{children}</MantineProvider>
+      <ReactQueryDevtools />
     </PersistQueryClientProvider>
   );
 }

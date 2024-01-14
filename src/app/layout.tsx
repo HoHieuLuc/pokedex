@@ -1,10 +1,9 @@
-import '@mantine/core/styles.css';
 import React from 'react';
 import { ColorSchemeScript } from '@mantine/core';
-import Providers from './Providers';
+import Providers from './providers';
 
 export const metadata = {
-  title: 'Mantine Next.js template',
+  title: 'Pokedex',
   description: 'I am using Mantine with Next.js!',
 };
 
