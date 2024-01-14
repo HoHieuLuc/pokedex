@@ -1,0 +1,12 @@
+.root {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex-grow: 1;
+  background-color: #eff7f7;
+  background-image: linear-gradient(to bottom, white 5px, transparent 5px);
+  background-size: 100% 10px;
+}

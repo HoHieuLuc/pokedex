@@ -1,0 +1,7 @@
+.root {
+  line-height: normal;
+  &[data-variant="white"] {
+    color: var(--fire-red-white);
+    text-shadow: var(--fire-red-white-shadow) 0.03em 0.03em;
+  }
+}
