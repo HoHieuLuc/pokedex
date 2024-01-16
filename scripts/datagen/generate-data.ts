@@ -1,11 +1,11 @@
 import fs from 'fs-extra';
 import { getPath } from '../utils/get-path';
-import axiosClient from '../../src/lib/axios-client';
 import datagenService from './datagen.service';
 import { PokemonRaw, ResourceData, ResourceList } from './datagen.type';
 import toChunks from '../utils/to-chunks';
 import cache from '../utils/cache';
 import { createLogger } from '../utils/logger';
+import { axiosClient } from '@/lib';
 
 const logger = createLogger('datagen');
 const limit = 999999;
@@ -62,6 +62,10 @@ const generateData = async () => {
     order: pokemon.order,
     height: pokemon.height,
     weight: pokemon.weight,
+    gameIndices: pokemon.gameIndices.reduce<Record<string, number>>((acc, item) => {
+      acc[item.version.name] = item.gameIndex;
+      return acc;
+    }, {}),
   }));
 
   logger.default.log('Writing data...');

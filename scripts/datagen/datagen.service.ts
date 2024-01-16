@@ -1,4 +1,4 @@
-import axiosClient from '@/lib/axios-client';
+import { axiosClient } from '@/lib';
 import cache from '../utils/cache';
 import { PokemonRaw } from './datagen.type';
 import { createLogger } from '../utils/logger';
