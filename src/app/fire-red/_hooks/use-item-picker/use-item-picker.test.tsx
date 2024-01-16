@@ -16,7 +16,7 @@ describe('fire-red/hooks/use-item-picker', () => {
     withKeyboardEvents: false,
   };
 
-  const defaultHookProps: UseItemPickerProps = {
+  const defaultHookProps: UseItemPickerProps<{ disabled: boolean }> = {
     items,
     initialIndex: 0,
     edges: 3,

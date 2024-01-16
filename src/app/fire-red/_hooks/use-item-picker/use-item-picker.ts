@@ -6,8 +6,8 @@ export interface UseItemPickerItem {
   disabled: boolean;
 }
 
-export interface UseItemPickerProps {
-  items: Array<UseItemPickerItem>;
+export interface UseItemPickerProps<T> {
+  items: Array<T>;
   initialIndex: number;
   edges: number;
 }
@@ -34,7 +34,7 @@ function findNextNonDisabledItemIndex(items: Array<UseItemPickerItem>, currentIn
  * Pick an item using arrow keys.
  * Use with embla carousel.
  */
-const useItemPicker = ({ items, initialIndex, edges }: UseItemPickerProps) => {
+const useItemPicker = <T extends UseItemPickerItem>({ items, initialIndex, edges }: UseItemPickerProps<T>) => {
   const [embla, setEmbla] = useState<Embla | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(initialIndex);
 
