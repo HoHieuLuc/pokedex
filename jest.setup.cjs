@@ -1,4 +1,5 @@
 require('@testing-library/jest-dom');
+require('fake-indexeddb/auto');
 
 const { getComputedStyle } = window;
 window.getComputedStyle = (elt) => getComputedStyle(elt);

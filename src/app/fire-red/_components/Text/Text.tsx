@@ -1,16 +1,20 @@
-import { Text as MText, TextProps } from '@mantine/core';
+import { Text as MText, TextProps, createPolymorphicComponent } from '@mantine/core';
 import cx from 'clsx';
 import classes from './Text.module.css';
+import { forwardRef } from 'react';
 
 interface Props extends TextProps {
   children: React.ReactNode;
 }
 
-const Text = ({ children, ...props }: Props) => {
-  return (
-    <MText {...props} className={cx(classes.root, props.className)}>
-      {children}
-    </MText>
-  );
-};
+const Text = createPolymorphicComponent<'p', Props>(
+  forwardRef<HTMLParagraphElement, Props>(function _Text({ children, ...props }, ref) {
+    return (
+      <MText {...props} ref={ref} className={cx(classes.root, props.className)}>
+        {children}
+      </MText>
+    );
+  }),
+);
+
 export default Text;

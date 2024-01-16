@@ -9,9 +9,9 @@ interface Props {
 const Layout = ({ children }: Props) => {
   return (
     <div className='root'>
-      <Navbar align='center' justify='space-around'>
+      <Navbar align='center' justify='center' className={classes['navbar-wrapper']}>
         <Text variant='white' className={classes.title}>
-          POKéDEX 1
+          POKéDEX
         </Text>
         <Text variant='white' className={classes.title}>
           TABLE OF CONTENTS

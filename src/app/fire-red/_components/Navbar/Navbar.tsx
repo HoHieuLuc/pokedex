@@ -1,4 +1,5 @@
 import { Group, GroupProps } from '@mantine/core';
+import clsx from 'clsx';
 import classes from './Navbar.module.css';
 
 interface Props extends GroupProps {
@@ -7,7 +8,7 @@ interface Props extends GroupProps {
 
 const Navbar = ({ children, ...props }: Props) => {
   return (
-    <Group {...props} className={classes.root}>
+    <Group {...props} className={clsx(classes.root, props.className)}>
       {children}
     </Group>
   );

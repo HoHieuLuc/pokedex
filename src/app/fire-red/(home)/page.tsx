@@ -1,9 +1,11 @@
-import TableOfContents from './_components/TableOfContents/TableOfContents';
+import { Sidebar, TableOfContents } from './_components';
+import classes from './page.module.css';
 
 const Page = () => {
   return (
-    <div>
+    <div className={classes.root}>
       <TableOfContents />
+      <Sidebar />
     </div>
   );
 };

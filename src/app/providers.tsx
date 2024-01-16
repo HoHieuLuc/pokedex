@@ -2,11 +2,10 @@
 
 import { useState } from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import queryClient from '@/lib/query-client';
 import { MantineProvider } from '@mantine/core';
 import { theme } from '@/theme/theme';
-import { createIDBPersister } from '@/lib/query-client-persister';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
+import { createIDBPersister, queryClient } from '@/lib';
 
 interface Props {
   children: React.ReactNode;
