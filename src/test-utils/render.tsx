@@ -3,8 +3,6 @@ import Providers from '@/app/providers';
 
 export function render(ui: React.ReactNode) {
   return testingLibraryRender(<>{ui}</>, {
-    wrapper: ({ children }: { children: React.ReactNode }) => (
-      <Providers>{children}</Providers>
-    ),
+    wrapper: ({ children }: { children: React.ReactNode }) => <Providers>{children}</Providers>,
   });
 }
