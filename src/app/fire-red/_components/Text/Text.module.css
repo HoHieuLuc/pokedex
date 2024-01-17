@@ -1,14 +1,17 @@
 .root {
+  --_fire-red-text-color: var(--fire-red-black);
+  --_fire-red-text-shadow-color: var(--fire-red-black-shadow);
+
   line-height: normal;
-  color: var(--fire-red-black);
-  text-shadow: var(--fire-red-black-shadow);
+  color: var(--_fire-red-text-color);
+  text-shadow: var(--_fire-red-text-shadow-color) 0.05em 0.05em;
 
   &[data-variant="white"] {
-    color: var(--fire-red-white);
-    text-shadow: var(--fire-red-white-shadow) 0.03em 0.03em;
+    --_fire-red-text-color: var(--fire-red-white);
+    --_fire-red-text-shadow-color: var(--fire-red-white-shadow);
   }
   &[data-variant="orange"] {
-    color: var(--fire-red-orange);
-    text-shadow: var(--fire-red-orange-shadow) 0.03em 0.03em;
+    --_fire-red-text-color: var(--fire-red-orange);
+    --_fire-red-text-shadow-color: var(--fire-red-orange-shadow);
   }
 }

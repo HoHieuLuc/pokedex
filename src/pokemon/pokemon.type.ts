@@ -6,7 +6,7 @@ export interface GetAllPayload {
 export interface Pokemon {
   id: number;
   name: string;
-  types: PokemonType[];
+  types: PokemonTypeData[];
   species: Species;
   order: number;
   height: number;
@@ -41,16 +41,14 @@ export interface Species {
   name: string;
 }
 
-export interface PokemonType {
+export interface PokemonTypeData {
   slot: number;
-  type: Type;
+  type: {
+    name: PokemonType;
+  };
 }
 
-export interface Type {
-  name: TypeName;
-}
-
-export type TypeName =
+export type PokemonType =
   | 'grass'
   | 'poison'
   | 'fire'

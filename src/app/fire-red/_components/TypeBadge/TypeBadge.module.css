@@ -1,0 +1,88 @@
+.root {
+  --_fire-red-type-badge-width: 3.6em;
+  --_fire-red-type-badge-height: 1.2em;
+  --_fire-red-type-badge-radius: 0.1em;
+  --_fire-red-type-badge-bg: #adad7b;
+  --_fire-red-type-badge-fz: var(--fire-red-fz-xs);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: var(--_fire-red-type-badge-bg);
+  width: var(--_fire-red-type-badge-width);
+  height: var(--_fire-red-type-badge-height);
+
+  :global(.mantine-Text-root),
+  & {
+    font-size: var(--_fire-red-type-badge-fz);
+    text-transform: uppercase;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: calc(var(--_fire-red-type-badge-height) - (var(--_fire-red-type-badge-radius) * 2));
+    background: var(--_fire-red-type-badge-bg);
+    width: calc(var(--_fire-red-type-badge-radius) + 1px);
+    position: absolute;
+  }
+
+  &::before {
+    left: calc(var(--_fire-red-type-badge-radius) * -1);
+  }
+  &::after {
+    right: calc(var(--_fire-red-type-badge-radius) * -1);
+  }
+
+  /* types */
+  &[data-type='bug'] {
+    --_fire-red-type-badge-bg: #dee731;
+  }
+  &[data-type='dark'] {
+    --_fire-red-type-badge-bg: #527b8c;
+  }
+  &[data-type='dragon'] {
+    --_fire-red-type-badge-bg: linear-gradient(0deg, #ef3100 50%, #6b94f7 50%);
+  }
+  &[data-type='electric'] {
+    --_fire-red-type-badge-bg: #ffb510;
+  }
+  &[data-type='fighting'] {
+    --_fire-red-type-badge-bg: #ef3100;
+  }
+  &[data-type='fire'] {
+    --_fire-red-type-badge-bg: #f78431;
+  }
+  &[data-type='flying'] {
+    --_fire-red-type-badge-bg: linear-gradient(0deg, #adad7b 50%, #9cdede 50%);
+  }
+  &[data-type='ghost'] {
+    --_fire-red-type-badge-bg: #a542a5;
+  }
+  &[data-type='grass'] {
+    --_fire-red-type-badge-bg: #7bce52;
+  }
+  &[data-type='ground'] {
+    --_fire-red-type-badge-bg: linear-gradient(0deg, #bda539 50%, #dee731 50%);
+  }
+  &[data-type='ice'] {
+    --_fire-red-type-badge-bg: #9cdede;
+  }
+  &[data-type='poison'] {
+    --_fire-red-type-badge-bg: linear-gradient(0deg, #a542a5 50%, #ff5a8c 50%);
+  }
+  &[data-type='psychic'] {
+    --_fire-red-type-badge-bg: #ff5a8c;
+  }
+  &[data-type='rock'] {
+    --_fire-red-type-badge-bg: #bda539;
+  }
+  &[data-type='steel'] {
+    --_fire-red-type-badge-bg: linear-gradient(0deg, #527b8c 50%, #adad7b 50%);
+  }
+  &[data-type='water'] {
+    --_fire-red-type-badge-bg: #6b94f7;
+  }
+}
