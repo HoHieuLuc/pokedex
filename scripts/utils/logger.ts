@@ -1,7 +1,7 @@
 import { Signale } from 'signale';
 
 export const createLogger = (scope: string) => {
-  const normal =  new Signale({
+  const normal = new Signale({
     scope,
     types: {
       success: {
@@ -18,7 +18,7 @@ export const createLogger = (scope: string) => {
         badge: '-',
         color: 'white',
         label: '',
-      }
+      },
     },
   });
 

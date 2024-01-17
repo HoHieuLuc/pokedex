@@ -11,13 +11,7 @@ const logger = createLogger('datagen');
 const limit = 999999;
 
 const generateData = async () => {
-  const saveDir = getPath('src/data');
-  // const saveFile = `${saveDir}/pokemon.json`;
-
-  // if (fs.existsSync(saveFile)) {
-  //   logger.default.success('Data already exists');
-  //   return;
-  // }
+  const saveDir = getPath('public');
 
   await fs.ensureDir(saveDir);
   await fs.ensureDir(cache.CACHE_DIR);

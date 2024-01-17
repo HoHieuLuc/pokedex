@@ -1,8 +1,9 @@
-import pokemon from '@/data/pokemon.json';
+import axios from 'axios';
 import { GetAllPayload, Pokemon } from './pokemon.type';
 
-const getAll = ({ limit, offset }: GetAllPayload = { limit: Infinity, offset: 0 }) => {
-  return pokemon.slice(offset, offset + limit) as Array<Pokemon>;
+const getAll = async ({ limit, offset }: GetAllPayload = { limit: Infinity, offset: 0 }) => {
+  const { data } = await axios.get<Array<Pokemon>>('/pokemon.json');
+  return data.slice(offset, offset + limit);
 };
 
 export default {
