@@ -37,12 +37,12 @@ const tableOfContents: TableOfContent[] = [
   {
     type: 'content',
     title: 'NUMERICAL MODE: KANTO',
-    href: '',
+    href: 'kanto',
   },
   {
     type: 'content',
     title: 'NUMERICAL MODE: NATIONAL',
-    href: '',
+    href: 'national',
   },
   {
     type: 'heading',
