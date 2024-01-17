@@ -34,7 +34,11 @@ function findNextNonDisabledItemIndex(items: Array<UseItemPickerItem>, currentIn
  * Pick an item using arrow keys.
  * Use with embla carousel.
  */
-const useItemPicker = <T extends UseItemPickerItem>({ items, initialIndex, edges }: UseItemPickerProps<T>) => {
+const useItemPicker = <T extends UseItemPickerItem>({
+  items,
+  initialIndex,
+  edges,
+}: UseItemPickerProps<T>) => {
   const [embla, setEmbla] = useState<Embla | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(initialIndex);
 
