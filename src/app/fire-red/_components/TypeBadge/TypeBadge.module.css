@@ -1,23 +1,23 @@
 .root {
-  --_fire-red-type-badge-width: 3.6em;
-  --_fire-red-type-badge-height: 1.6em;
-  --_fire-red-type-badge-radius: 0.1em;
-  --_fire-red-type-badge-bg: #adad7b;
-  --_fire-red-type-badge-fz: var(--fire-red-fz-xss);
+  --_fr-type-badge-width: 3.6em;
+  --_fr-type-badge-height: 1.6em;
+  --_fr-type-badge-radius: 0.1em;
+  --_fr-type-badge-bg: #adad7b;
+  --_fr-type-badge-fz: var(--fr-fz-xss);
 
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  background: var(--_fire-red-type-badge-bg);
-  width: var(--_fire-red-type-badge-width);
-  height: var(--_fire-red-type-badge-height);
-  margin-left: var(--_fire-red-type-badge-radius);
-  margin-right: var(--_fire-red-type-badge-radius);
+  background: var(--_fr-type-badge-bg);
+  width: var(--_fr-type-badge-width);
+  height: var(--_fr-type-badge-height);
+  margin-left: var(--_fr-type-badge-radius);
+  margin-right: var(--_fr-type-badge-radius);
 
   :global(.mantine-Text-root),
   & {
-    font-size: var(--_fire-red-type-badge-fz);
+    font-size: var(--_fr-type-badge-fz);
     text-transform: uppercase;
   }
   :global(.mantine-Text-root) {
@@ -28,66 +28,66 @@
   &::after {
     content: '';
     display: block;
-    height: calc(var(--_fire-red-type-badge-height) - (var(--_fire-red-type-badge-radius) * 2));
-    background: var(--_fire-red-type-badge-bg);
-    width: calc(var(--_fire-red-type-badge-radius) + 1px);
+    height: calc(var(--_fr-type-badge-height) - (var(--_fr-type-badge-radius) * 2));
+    background: var(--_fr-type-badge-bg);
+    width: calc(var(--_fr-type-badge-radius) + 1px);
     position: absolute;
   }
 
   &::before {
-    left: calc(var(--_fire-red-type-badge-radius) * -1);
+    left: calc(var(--_fr-type-badge-radius) * -1);
   }
   &::after {
-    right: calc(var(--_fire-red-type-badge-radius) * -1);
+    right: calc(var(--_fr-type-badge-radius) * -1);
   }
 
   /* types */
   &[data-type='bug'] {
-    --_fire-red-type-badge-bg: #dee731;
+    --_fr-type-badge-bg: #dee731;
   }
   &[data-type='dark'] {
-    --_fire-red-type-badge-bg: #527b8c;
+    --_fr-type-badge-bg: #527b8c;
   }
   &[data-type='dragon'] {
-    --_fire-red-type-badge-bg: linear-gradient(0deg, #ef3100 50%, #6b94f7 50%);
+    --_fr-type-badge-bg: linear-gradient(0deg, #ef3100 50%, #6b94f7 50%);
   }
   &[data-type='electric'] {
-    --_fire-red-type-badge-bg: #ffb510;
+    --_fr-type-badge-bg: #ffb510;
   }
   &[data-type='fighting'] {
-    --_fire-red-type-badge-bg: #ef3100;
+    --_fr-type-badge-bg: #ef3100;
   }
   &[data-type='fire'] {
-    --_fire-red-type-badge-bg: #f78431;
+    --_fr-type-badge-bg: #f78431;
   }
   &[data-type='flying'] {
-    --_fire-red-type-badge-bg: linear-gradient(0deg, #adad7b 50%, #9cdede 50%);
+    --_fr-type-badge-bg: linear-gradient(0deg, #adad7b 50%, #9cdede 50%);
   }
   &[data-type='ghost'] {
-    --_fire-red-type-badge-bg: #a542a5;
+    --_fr-type-badge-bg: #a542a5;
   }
   &[data-type='grass'] {
-    --_fire-red-type-badge-bg: #7bce52;
+    --_fr-type-badge-bg: #7bce52;
   }
   &[data-type='ground'] {
-    --_fire-red-type-badge-bg: linear-gradient(0deg, #bda539 50%, #dee731 50%);
+    --_fr-type-badge-bg: linear-gradient(0deg, #bda539 50%, #dee731 50%);
   }
   &[data-type='ice'] {
-    --_fire-red-type-badge-bg: #9cdede;
+    --_fr-type-badge-bg: #9cdede;
   }
   &[data-type='poison'] {
-    --_fire-red-type-badge-bg: linear-gradient(0deg, #a542a5 50%, #ff5a8c 50%);
+    --_fr-type-badge-bg: linear-gradient(0deg, #a542a5 50%, #ff5a8c 50%);
   }
   &[data-type='psychic'] {
-    --_fire-red-type-badge-bg: #ff5a8c;
+    --_fr-type-badge-bg: #ff5a8c;
   }
   &[data-type='rock'] {
-    --_fire-red-type-badge-bg: #bda539;
+    --_fr-type-badge-bg: #bda539;
   }
   &[data-type='steel'] {
-    --_fire-red-type-badge-bg: linear-gradient(0deg, #527b8c 50%, #adad7b 50%);
+    --_fr-type-badge-bg: linear-gradient(0deg, #527b8c 50%, #adad7b 50%);
   }
   &[data-type='water'] {
-    --_fire-red-type-badge-bg: #6b94f7;
+    --_fr-type-badge-bg: #6b94f7;
   }
 }

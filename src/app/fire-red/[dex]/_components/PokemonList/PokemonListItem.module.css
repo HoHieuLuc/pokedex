@@ -3,7 +3,7 @@
   display: grid;
   align-items: flex-end;
   grid-template-columns: 12% 400px auto;
-  margin-left: var(--fire-red-fz-sm);
+  margin-left: var(--fr-fz-sm);
 
   &[data-active='true'] {
     &::before {
@@ -12,17 +12,17 @@
       margin-top: auto;
       margin-bottom: auto;
       left: -1em;
-      text-shadow: var(--fire-red-black-shadow) 2px 0.5px;
-      font-size: var(--fire-red-fz-xs);
+      text-shadow: var(--fr-black-shadow) 2px 0.5px;
+      font-size: var(--fr-fz-xs);
     }
   }
 }
 
 .index {
-  font-size: var(--fire-red-fz-xs);
+  font-size: var(--fr-fz-xs);
 }
 
 .name {
-  font-size: var(--fire-red-fz-sm);
+  font-size: var(--fr-fz-sm);
   text-transform: uppercase;
 }

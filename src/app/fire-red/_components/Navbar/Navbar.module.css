@@ -1,5 +1,5 @@
 .root {
-  color: var(--fire-red-white);
-  background-color: var(--fire-red-lime);
-  height: var(--fire-red-navbar-height);
+  color: var(--fr-white);
+  background-color: var(--fr-lime);
+  height: var(--fr-navbar-height);
 }

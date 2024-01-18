@@ -2,12 +2,12 @@
   display: flex;
   align-items: center;
   height: 100%;
-  font-size: var(--fire-red-fz-md);
+  font-size: var(--fr-fz-md);
   position: relative;
   margin-left: 80px;
 
   &[data-variant='orange'] {
-    font-size: var(--fire-red-fz-heading);
+    font-size: var(--fr-fz-heading);
     margin-left: 30px;
   }
 
@@ -18,7 +18,7 @@
       margin-top: auto;
       margin-bottom: auto;
       left: -1em;
-      text-shadow: var(--fire-red-black-shadow) 2px 0.5px;
+      text-shadow: var(--fr-black-shadow) 2px 0.5px;
     }
   }
 }

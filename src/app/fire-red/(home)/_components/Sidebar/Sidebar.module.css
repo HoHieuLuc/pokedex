@@ -5,7 +5,7 @@
 }
 
 .text {
-  font-size: var(--fire-red-fz-sm);
+  font-size: var(--fr-fz-sm);
 }
 
 .list {
@@ -20,7 +20,7 @@
     gap: 2em;
 
     > p {
-      font-size: var(--fire-red-fz-sm);
+      font-size: var(--fr-fz-sm);
     }
   }
 }

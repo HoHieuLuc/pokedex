@@ -1,17 +1,17 @@
 .root {
-  --_fire-red-text-color: var(--fire-red-black);
-  --_fire-red-text-shadow-color: var(--fire-red-black-shadow);
+  --_fr-text-color: var(--fr-black);
+  --_fr-text-shadow-color: var(--fr-black-shadow);
 
   line-height: normal;
-  color: var(--_fire-red-text-color);
-  text-shadow: var(--_fire-red-text-shadow-color) 0.05em 0.05em;
+  color: var(--_fr-text-color);
+  text-shadow: var(--_fr-text-shadow-color) 0.05em 0.05em;
 
   &[data-variant="white"] {
-    --_fire-red-text-color: var(--fire-red-white);
-    --_fire-red-text-shadow-color: var(--fire-red-white-shadow);
+    --_fr-text-color: var(--fr-white);
+    --_fr-text-shadow-color: var(--fr-white-shadow);
   }
   &[data-variant="orange"] {
-    --_fire-red-text-color: var(--fire-red-orange);
-    --_fire-red-text-shadow-color: var(--fire-red-orange-shadow);
+    --_fr-text-color: var(--fr-orange);
+    --_fr-text-shadow-color: var(--fr-orange-shadow);
   }
 }

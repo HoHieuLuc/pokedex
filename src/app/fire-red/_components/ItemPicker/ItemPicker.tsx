@@ -5,7 +5,7 @@ const ItemPicker = (props: CarouselProps) => {
     <Carousel
       orientation='vertical'
       containScroll='trimSnaps'
-      height='var(--fire-red-main-height)'
+      height='var(--fr-main-height)'
       align='start'
       slideSize={60}
       withKeyboardEvents={false}
