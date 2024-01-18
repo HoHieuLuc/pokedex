@@ -7,16 +7,25 @@ import { useItemPicker } from '@/app/fire-red/_hooks';
 import { useHotkeys } from '@mantine/hooks';
 import { useRouter } from 'next/navigation';
 import { ItemPicker } from '@/app/fire-red/_components';
+import { useMemo } from 'react';
 
 const TableOfContents = () => {
   const router = useRouter();
+  const items = useMemo(
+    () =>
+      tableOfContents.map((item) => ({
+        disabled: item.type === 'heading',
+        ...item,
+      })),
+    [],
+  );
+
   const { setEmbla, selectedIndex, selectedItem } = useItemPicker({
-    items: tableOfContents.map((item) => ({
-      disabled: item.type === 'heading',
-      ...item,
-    })),
     initialIndex: 1,
     edges: 3,
+    items,
+    throttleDelay: 0,
+    stepsToSkip: 0,
   });
 
   useHotkeys([['Z', () => router.push(`/fire-red/${selectedItem.href}`)]]);

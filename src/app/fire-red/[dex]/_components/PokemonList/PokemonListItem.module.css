@@ -1,0 +1,28 @@
+.root {
+  position: relative;
+  display: grid;
+  align-items: flex-end;
+  grid-template-columns: 12% 400px auto;
+  margin-left: var(--fire-red-fz-sm);
+
+  &[data-active='true'] {
+    &::before {
+      content: '▶';
+      position: absolute;
+      margin-top: auto;
+      margin-bottom: auto;
+      left: -1em;
+      text-shadow: var(--fire-red-black-shadow) 2px 0.5px;
+      font-size: var(--fire-red-fz-xs);
+    }
+  }
+}
+
+.index {
+  font-size: var(--fire-red-fz-xs);
+}
+
+.name {
+  font-size: var(--fire-red-fz-sm);
+  text-transform: uppercase;
+}

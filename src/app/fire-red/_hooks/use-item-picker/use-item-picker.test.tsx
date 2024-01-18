@@ -21,22 +21,29 @@ describe('fire-red/hooks/use-item-picker', () => {
     initialIndex: 0,
     edges: 3,
     throttleDelay: 0,
+    stepsToSkip: 3,
+  };
+
+  const setUpTest = (props = defaultHookProps) => {
+    const view = renderHook(() => useItemPicker(props));
+
+    render(
+      <Carousel {...defaultCarouselProps} getEmblaApi={view.result.current.setEmbla}>
+        {slides}
+      </Carousel>,
+    );
+
+    return view;
   };
 
   it('should set the initial index correctly', () => {
-    const { result } = renderHook(() => useItemPicker({ ...defaultHookProps, initialIndex: 2 }));
+    const { result } = setUpTest({ ...defaultHookProps, initialIndex: 2 });
 
     expect(result.current.selectedIndex).toBe(2);
   });
 
   it('should increment the index when arrow down is pressed', async () => {
-    const { result } = renderHook(() => useItemPicker(defaultHookProps));
-
-    render(
-      <Carousel {...defaultCarouselProps} getEmblaApi={result.current.setEmbla}>
-        {slides}
-      </Carousel>,
-    );
+    const { result } = setUpTest();
 
     await userEvent.keyboard('{ArrowDown}');
 
@@ -44,13 +51,7 @@ describe('fire-red/hooks/use-item-picker', () => {
   });
 
   it('should decrement the index when arrow up is pressed', async () => {
-    const { result } = renderHook(() => useItemPicker({ ...defaultHookProps, initialIndex: 3 }));
-
-    render(
-      <Carousel {...defaultCarouselProps} getEmblaApi={result.current.setEmbla}>
-        {slides}
-      </Carousel>,
-    );
+    const { result } = setUpTest({ ...defaultHookProps, initialIndex: 3 });
 
     await userEvent.keyboard('{ArrowUp}');
 
@@ -58,13 +59,7 @@ describe('fire-red/hooks/use-item-picker', () => {
   });
 
   it('should not decrement the index when arrow up is pressed and there is no previous non-disabled item', async () => {
-    const { result } = renderHook(() => useItemPicker(defaultHookProps));
-
-    render(
-      <Carousel {...defaultCarouselProps} getEmblaApi={result.current.setEmbla}>
-        {slides}
-      </Carousel>,
-    );
+    const { result } = setUpTest();
 
     await userEvent.keyboard('{ArrowUp}');
 
@@ -72,15 +67,7 @@ describe('fire-red/hooks/use-item-picker', () => {
   });
 
   it('should not increment the index when arrow down is pressed and there is no next non-disabled item', async () => {
-    const { result } = renderHook(() =>
-      useItemPicker({ ...defaultHookProps, initialIndex: items.length - 1 }),
-    );
-
-    render(
-      <Carousel {...defaultCarouselProps} getEmblaApi={result.current.setEmbla}>
-        {slides}
-      </Carousel>,
-    );
+    const { result } = setUpTest({ ...defaultHookProps, initialIndex: items.length - 1 });
 
     await userEvent.keyboard('{ArrowDown}');
 
@@ -88,13 +75,7 @@ describe('fire-red/hooks/use-item-picker', () => {
   });
 
   it('should skip disabled items', async () => {
-    const { result } = renderHook(() => useItemPicker({ ...defaultHookProps, initialIndex: 3 }));
-
-    render(
-      <Carousel {...defaultCarouselProps} getEmblaApi={result.current.setEmbla}>
-        {slides}
-      </Carousel>,
-    );
+    const { result } = setUpTest({ ...defaultHookProps, initialIndex: 3 });
 
     await userEvent.keyboard('{ArrowDown}');
     expect(result.current.selectedIndex).toBe(6);
@@ -107,5 +88,31 @@ describe('fire-red/hooks/use-item-picker', () => {
 
     await userEvent.keyboard('{ArrowUp}');
     expect(result.current.selectedIndex).toBe(3);
+  });
+
+  it(`should skip ${defaultHookProps.stepsToSkip} items`, async () => {
+    const { result } = setUpTest({ ...defaultHookProps, initialIndex: 3 });
+
+    await userEvent.keyboard('{ArrowRight}');
+    expect(result.current.selectedIndex).toBe(6);
+
+    await userEvent.keyboard('{ArrowLeft}');
+    expect(result.current.selectedIndex).toBe(3);
+  });
+
+  it(`should return the last item when there are less than ${defaultHookProps.stepsToSkip} items`, async () => {
+    const { result } = setUpTest({ ...defaultHookProps, initialIndex: items.length - 2 });
+
+    await userEvent.keyboard('{ArrowRight}');
+
+    expect(result.current.selectedIndex).toBe(items.length - 1);
+  });
+
+  it(`should return the first item when there are less than ${defaultHookProps.stepsToSkip} items`, async () => {
+    const { result } = setUpTest({ ...defaultHookProps, initialIndex: 2 });
+
+    await userEvent.keyboard('{ArrowLeft}');
+
+    expect(result.current.selectedIndex).toBe(0);
   });
 });
