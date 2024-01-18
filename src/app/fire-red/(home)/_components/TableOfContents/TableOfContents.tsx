@@ -3,7 +3,7 @@
 import { Carousel } from '@mantine/carousel';
 import tableOfContents from './table-of-contents';
 import TableOfContentsItem from './TableOfContentsItem';
-import { useItemPicker } from '@/app/fire-red/_hooks';
+import { useItemPicker } from '@/hooks';
 import { useHotkeys } from '@mantine/hooks';
 import { useRouter } from 'next/navigation';
 import { ItemPicker } from '@/app/fire-red/_components';

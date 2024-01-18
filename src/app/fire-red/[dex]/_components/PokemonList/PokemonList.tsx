@@ -5,7 +5,7 @@ import PokemonListItem from './PokemonListItem';
 import { Flex } from '@mantine/core';
 import { ItemPicker } from '@/app/fire-red/_components';
 import { Carousel } from '@mantine/carousel';
-import { useItemPicker } from '@/app/fire-red/_hooks';
+import { useItemPicker } from '@/hooks';
 import { useMemo } from 'react';
 import { useHotkeys } from '@mantine/hooks';
 import { useRouter } from 'next/navigation';
