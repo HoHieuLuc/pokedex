@@ -2,16 +2,16 @@ import { useQuery } from '@tanstack/react-query';
 import fireRedService from './fire-red.service';
 
 const QUERY_KEYS = {
-  kanto: ['fire-red', 'dex', 'kanto'],
+  dex: (dex: 'kanto' | 'national') => ['fire-red', 'dex', dex],
 };
 
-const useKantoDex = () => {
+const useDex = (dex: 'kanto' | 'national') => {
   return useQuery({
-    queryKey: QUERY_KEYS.kanto,
-    queryFn: fireRedService.getKantoDex,
+    queryKey: QUERY_KEYS.dex(dex),
+    queryFn: () => fireRedService.getDex(dex),
   });
 };
 
 export default {
-  useKantoDex,
+  useDex,
 };

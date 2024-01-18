@@ -1,13 +1,12 @@
 import { Pokemon, pokemonService } from '@/pokemon';
 
-const isFireRedPokemon = (
-  pokemon: Pokemon,
-): pokemon is Pokemon<'firered'> => {
+const isFireRedPokemon = (pokemon: Pokemon): pokemon is Pokemon<'firered'> => {
   return pokemon.gameIndices['firered'] !== undefined;
 };
 
-const getKantoDex = async () => {
-  const pokemons = await pokemonService.getAll({ limit: 151, offset: 0 });
+const getDex = async (dex: 'kanto' | 'national') => {
+  const limit = dex === 'kanto' ? 151 : 386;
+  const pokemons = await pokemonService.getAll({ limit, offset: 0 });
 
   return pokemons.filter(isFireRedPokemon).sort((a, b) => {
     return a.gameIndices['firered'] - b.gameIndices['firered'];
@@ -15,5 +14,5 @@ const getKantoDex = async () => {
 };
 
 export default {
-  getKantoDex,
+  getDex,
 };

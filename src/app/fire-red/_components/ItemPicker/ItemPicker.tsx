@@ -7,8 +7,7 @@ const ItemPicker = (props: CarouselProps) => {
       containScroll='trimSnaps'
       height='var(--fire-red-main-height)'
       align='start'
-      // slideSize='fit-content'
-      slideSize='calc(100% / 9)'
+      slideSize={60}
       withKeyboardEvents={false}
       withControls={false}
       draggable={false}
