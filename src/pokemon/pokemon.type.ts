@@ -3,7 +3,7 @@ export interface GetAllPayload {
   offset: number;
 }
 
-export interface Pokemon {
+export interface Pokemon<T extends VersionName = never> {
   id: number;
   name: string;
   types: PokemonTypeData[];
@@ -11,7 +11,7 @@ export interface Pokemon {
   order: number;
   height: number;
   weight: number;
-  gameIndices: Record<VersionName, number>;
+  gameIndices: Partial<Record<VersionName, number>> & Record<T, number>;
 }
 
 export type VersionName =

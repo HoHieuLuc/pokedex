@@ -1,7 +1,9 @@
 import { Pokemon, pokemonService } from '@/pokemon';
 
-const isFireRedPokemon = (pokemon: Pokemon) => {
-  return pokemon.gameIndices['firered'];
+const isFireRedPokemon = (
+  pokemon: Pokemon,
+): pokemon is Pokemon<'firered'> => {
+  return pokemon.gameIndices['firered'] !== undefined;
 };
 
 const getKantoDex = async () => {
