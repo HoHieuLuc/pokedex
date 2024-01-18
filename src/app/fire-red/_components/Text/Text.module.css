@@ -10,6 +10,7 @@
     --_fr-text-color: var(--fr-white);
     --_fr-text-shadow-color: var(--fr-white-shadow);
   }
+
   &[data-variant="orange"] {
     --_fr-text-color: var(--fr-orange);
     --_fr-text-shadow-color: var(--fr-orange-shadow);

@@ -20,6 +20,7 @@
     font-size: var(--_fr-type-badge-fz);
     text-transform: uppercase;
   }
+
   :global(.mantine-Text-root) {
     transform: scaleY(1.3);
   }
@@ -37,6 +38,7 @@
   &::before {
     left: calc(var(--_fr-type-badge-radius) * -1);
   }
+
   &::after {
     right: calc(var(--_fr-type-badge-radius) * -1);
   }
@@ -45,48 +47,63 @@
   &[data-type='bug'] {
     --_fr-type-badge-bg: #dee731;
   }
+
   &[data-type='dark'] {
     --_fr-type-badge-bg: #527b8c;
   }
+
   &[data-type='dragon'] {
     --_fr-type-badge-bg: linear-gradient(0deg, #ef3100 50%, #6b94f7 50%);
   }
+
   &[data-type='electric'] {
     --_fr-type-badge-bg: #ffb510;
   }
+
   &[data-type='fighting'] {
     --_fr-type-badge-bg: #ef3100;
   }
+
   &[data-type='fire'] {
     --_fr-type-badge-bg: #f78431;
   }
+
   &[data-type='flying'] {
     --_fr-type-badge-bg: linear-gradient(0deg, #adad7b 50%, #9cdede 50%);
   }
+
   &[data-type='ghost'] {
     --_fr-type-badge-bg: #a542a5;
   }
+
   &[data-type='grass'] {
     --_fr-type-badge-bg: #7bce52;
   }
+
   &[data-type='ground'] {
     --_fr-type-badge-bg: linear-gradient(0deg, #bda539 50%, #dee731 50%);
   }
+
   &[data-type='ice'] {
     --_fr-type-badge-bg: #9cdede;
   }
+
   &[data-type='poison'] {
     --_fr-type-badge-bg: linear-gradient(0deg, #a542a5 50%, #ff5a8c 50%);
   }
+
   &[data-type='psychic'] {
     --_fr-type-badge-bg: #ff5a8c;
   }
+
   &[data-type='rock'] {
     --_fr-type-badge-bg: #bda539;
   }
+
   &[data-type='steel'] {
     --_fr-type-badge-bg: linear-gradient(0deg, #527b8c 50%, #adad7b 50%);
   }
+
   &[data-type='water'] {
     --_fr-type-badge-bg: #6b94f7;
   }

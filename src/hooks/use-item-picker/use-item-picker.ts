@@ -143,7 +143,10 @@ const useItemPicker = <T extends UseItemPickerItem>({
       const _selectedIndex = selectedIndexRef.current;
 
       // find previous non disabled item index by skipping the previous [stepsToSkip + 1] item
-      const nextActiveIndex = findPreviousNonDisabledItemIndex(items, _selectedIndex - stepsToSkip + 1);
+      const nextActiveIndex = findPreviousNonDisabledItemIndex(
+        items,
+        _selectedIndex - stepsToSkip + 1,
+      );
       // if the next item can not be found, then pick the first non disabled item
       if (nextActiveIndex === -1) {
         const firstNonDisabledItemIndex = findNextNonDisabledItemIndex(items, -1);
