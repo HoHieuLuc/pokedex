@@ -1,9 +1,9 @@
 .root {
   --_fire-red-type-badge-width: 3.6em;
-  --_fire-red-type-badge-height: 1.2em;
+  --_fire-red-type-badge-height: 1.6em;
   --_fire-red-type-badge-radius: 0.1em;
   --_fire-red-type-badge-bg: #adad7b;
-  --_fire-red-type-badge-fz: var(--fire-red-fz-xs);
+  --_fire-red-type-badge-fz: var(--fire-red-fz-xss);
 
   display: flex;
   justify-content: center;
@@ -12,11 +12,16 @@
   background: var(--_fire-red-type-badge-bg);
   width: var(--_fire-red-type-badge-width);
   height: var(--_fire-red-type-badge-height);
+  margin-left: var(--_fire-red-type-badge-radius);
+  margin-right: var(--_fire-red-type-badge-radius);
 
   :global(.mantine-Text-root),
   & {
     font-size: var(--_fire-red-type-badge-fz);
     text-transform: uppercase;
+  }
+  :global(.mantine-Text-root) {
+    transform: scaleY(1.3);
   }
 
   &::before,
