@@ -20,6 +20,7 @@ describe('fire-red/hooks/use-item-picker', () => {
     items,
     initialIndex: 0,
     edges: 3,
+    throttleDelay: 0,
   };
 
   it('should set the initial index correctly', () => {
@@ -94,6 +95,12 @@ describe('fire-red/hooks/use-item-picker', () => {
         {slides}
       </Carousel>,
     );
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(result.current.selectedIndex).toBe(6);
+
+    await userEvent.keyboard('{ArrowUp}');
+    expect(result.current.selectedIndex).toBe(3);
 
     await userEvent.keyboard('{ArrowDown}');
     expect(result.current.selectedIndex).toBe(6);
