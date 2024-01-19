@@ -1,35 +1,31 @@
 'use client';
 
-import fireRedHook from '@/app/fire-red/fire-red.hook';
 import PokemonListItem from './PokemonListItem';
 import { Flex } from '@mantine/core';
 import { ItemPicker } from '@/app/fire-red/_components';
 import { Carousel } from '@mantine/carousel';
-import { useItemPicker } from '@/hooks';
-import { useMemo } from 'react';
-import { useHotkeys } from '@mantine/hooks';
-import { useRouter } from 'next/navigation';
+import { useItemPicker, useSelectedIndex } from '@/hooks';
+import { useEffect, useMemo } from 'react';
+import { Pokemon } from '@/pokemon';
 
 interface Props {
+  data: Pokemon<'firered'>[];
   dex: 'kanto' | 'national';
 }
 
-const PokemonList = ({ dex }: Props) => {
-  const router = useRouter();
-  const { data, isLoading } = fireRedHook.useDex(dex);
+const PokemonList = ({ data, dex }: Props) => {
+  const [initialIndex, setSelectedIndex] = useSelectedIndex({ key: `fire-red-${dex}`, defaultValue: 1 });
 
-  const items = useMemo(() => data?.map(() => ({ disabled: false })), [data]);
+  const items = useMemo(() => data.map(() => ({ disabled: false })), [data]);
   const { setEmbla, selectedIndex } = useItemPicker({
     items: items || [],
     edges: 3,
-    initialIndex: 0,
+    initialIndex: initialIndex,
   });
 
-  useHotkeys([['X', () => router.push('.')]]);
-
-  if (isLoading) {
-    return <></>;
-  }
+  useEffect(() => {
+    setSelectedIndex(selectedIndex);
+  }, [selectedIndex]);
 
   const pokemonItems = data?.map((pokemon, index) => (
     <Carousel.Slide key={pokemon.id}>
@@ -39,7 +35,7 @@ const PokemonList = ({ dex }: Props) => {
 
   return (
     <Flex justify='center' py='xs' mx='lg'>
-      <ItemPicker getEmblaApi={setEmbla} miw={800}>
+      <ItemPicker getEmblaApi={setEmbla} miw={800} initialSlide={initialIndex - 3}>
         {pokemonItems}
       </ItemPicker>
     </Flex>

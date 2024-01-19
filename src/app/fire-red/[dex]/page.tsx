@@ -1,4 +1,4 @@
-import { PokemonList } from './_components';
+import { PokemonListPage } from './_components';
 
 interface Props {
   params: {
@@ -9,7 +9,7 @@ interface Props {
 const Page = ({ params }: Props) => {
   return (
     <div>
-      <PokemonList dex={params.dex} />
+      <PokemonListPage dex={params.dex} />
     </div>
   );
 };
