@@ -1,14 +1,13 @@
-import { Navbar, Text } from '../_components';
-import '../theme.css';
+import { Layout, Navbar, Text } from '../_components';
 import classes from './layout.module.css';
 
 interface Props {
   children: React.ReactNode;
 }
 
-const Layout = ({ children }: Props) => {
+const PageLayout = ({ children }: Props) => {
   return (
-    <div className='root'>
+    <Layout>
       <Navbar align='center' justify='center' className={classes['navbar-wrapper']}>
         <Text variant='white' className={classes.title}>
           POKéDEX
@@ -23,8 +22,8 @@ const Layout = ({ children }: Props) => {
           Button
         </Text>
       </Navbar>
-    </div>
+    </Layout>
   );
 };
 
-export default Layout;
+export default PageLayout;
