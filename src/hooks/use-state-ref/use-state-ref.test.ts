@@ -1,7 +1,7 @@
 import { act, renderHook } from '@/test-utils';
 import useStateRef from './use-state-ref';
 
-describe('fire-red/hooks/use-state-ref', () => {
+describe('hooks/use-state-ref', () => {
   const initialValue = 0;
 
   it('correctly sets initial state', () => {

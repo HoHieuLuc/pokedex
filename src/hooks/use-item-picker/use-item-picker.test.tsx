@@ -2,7 +2,7 @@ import { render, renderHook, userEvent } from '@/test-utils';
 import useItemPicker, { UseItemPickerProps } from './use-item-picker';
 import { Carousel, CarouselProps } from '@mantine/carousel';
 
-describe('fire-red/hooks/use-item-picker', () => {
+describe('hooks/use-item-picker', () => {
   const items = [false, false, false, false, true, true, false, false, false, false].map(
     (item) => ({
       disabled: item,
