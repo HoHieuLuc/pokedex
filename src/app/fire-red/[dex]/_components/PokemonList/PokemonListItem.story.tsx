@@ -27,7 +27,7 @@ const pokemon: Pokemon = {
     name: 'butterfree',
     pokedexNumbers: {
       kanto: 1,
-    } as PokedexNumbers
+    } as PokedexNumbers,
   },
 };
 
