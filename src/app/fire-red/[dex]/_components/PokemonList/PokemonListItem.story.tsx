@@ -1,9 +1,9 @@
-import { Pokemon } from '@/pokemon';
+import { Pokedex, Pokemon } from '@/pokemon';
 import PokemonListItem from './PokemonListItem';
 
 export default { title: 'Fire Red/PokemonListItem' };
 
-const pokemon: Pokemon<'firered'> = {
+const pokemon: Pokemon = {
   id: 1,
   height: 1,
   name: 'butterfree',
@@ -25,16 +25,16 @@ const pokemon: Pokemon<'firered'> = {
   weight: 1,
   species: {
     name: 'butterfree',
-  },
-  gameIndices: {
-    firered: 1,
+    pokedexNumbers: {
+      kanto: 1,
+    } as Record<Pokedex, number>,
   },
 };
 
 export const Default = () => {
   return (
     <div style={{ background: 'white', padding: 20 }}>
-      <PokemonListItem {...pokemon} active />
+      <PokemonListItem {...pokemon} dex='kanto' active />
     </div>
   );
 };
