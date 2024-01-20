@@ -3,15 +3,14 @@ export interface GetAllPayload {
   offset: number;
 }
 
-export interface Pokemon<T extends VersionName = never> {
+export interface Pokemon {
   id: number;
   name: string;
   types: PokemonTypeData[];
-  species: Species;
+  species: PokemonSpecies;
   order: number;
   height: number;
   weight: number;
-  gameIndices: Partial<Record<VersionName, number>> & Record<T, number>;
 }
 
 export type VersionName =
@@ -37,9 +36,22 @@ export type VersionName =
   | 'white-2'
   | 'omega-ruby';
 
-export interface Species {
+export interface PokemonSpecies {
+  habitat?: PokemonHabitat;
   name: string;
+  pokedexNumbers: Record<Pokedex, number>;
 }
+
+export type PokemonHabitat =
+  | 'grassland'
+  | 'mountain'
+  | 'waters-edge'
+  | 'forest'
+  | 'rough-terrain'
+  | 'cave'
+  | 'urban'
+  | 'sea'
+  | 'rare';
 
 export interface PokemonTypeData {
   slot: number;
@@ -67,3 +79,37 @@ export type PokemonType =
   | 'ghost'
   | 'dragon'
   | 'dark';
+
+export type Pokedex =
+  | 'national'
+  | 'kanto'
+  | 'original-johto'
+  | 'hoenn'
+  | 'original-sinnoh'
+  | 'extended-sinnoh'
+  | 'updated-johto'
+  | 'original-unova'
+  | 'updated-unova'
+  | 'conquest-gallery'
+  | 'kalos-central'
+  | 'kalos-coastal'
+  | 'kalos-mountain'
+  | 'updated-hoenn'
+  | 'original-alola'
+  | 'original-melemele'
+  | 'original-akala'
+  | 'original-ulaula'
+  | 'original-poni'
+  | 'updated-alola'
+  | 'updated-melemele'
+  | 'updated-akala'
+  | 'updated-ulaula'
+  | 'updated-poni'
+  | 'letsgo-kanto'
+  | 'galar'
+  | 'isle-of-armor'
+  | 'crown-tundra'
+  | 'hisui'
+  | 'paldea'
+  | 'kitakami'
+  | 'blueberry';

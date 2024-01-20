@@ -1,14 +1,13 @@
 import { POKEMON } from '@/config';
-import { Navbar, Text } from '../_components';
-import '../theme.css';
+import { Layout, Navbar, Text } from '../_components';
 
 interface Props {
   children: React.ReactNode;
 }
 
-const Layout = ({ children }: Props) => {
+const PageLayout = ({ children }: Props) => {
   return (
-    <div className='root'>
+    <Layout>
       <Navbar align='center' justify='center'>
         <Text variant='white' fz={50}>
           {POKEMON} LIST
@@ -20,8 +19,8 @@ const Layout = ({ children }: Props) => {
           Button
         </Text>
       </Navbar>
-    </div>
+    </Layout>
   );
 };
 
-export default Layout;
+export default PageLayout;

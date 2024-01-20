@@ -1,12 +1,12 @@
 'use client';
 
-import fireRedHook from '@/app/fire-red/fire-red.hook';
 import { useHotkeys } from '@mantine/hooks';
 import { useRouter } from 'next/navigation';
 import PokemonList from './PokemonList';
+import { FireRedDex, fireRedHook } from '@/app/fire-red';
 
 interface Props {
-  dex: 'kanto' | 'national';
+  dex: FireRedDex;
 }
 
 const PokemonListPage = ({ dex }: Props) => {

@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import fireRedService from './fire-red.service';
+import { FireRedDex } from './fire-red.type';
 
 const QUERY_KEYS = {
-  dex: (dex: 'kanto' | 'national') => ['fire-red', 'dex', dex],
+  dex: (dex: FireRedDex) => ['fire-red', 'dex', dex],
 };
 
-const useDex = (dex: 'kanto' | 'national') => {
+const useDex = (dex: FireRedDex) => {
   return useQuery({
     queryKey: QUERY_KEYS.dex(dex),
     queryFn: () => fireRedService.getDex(dex),

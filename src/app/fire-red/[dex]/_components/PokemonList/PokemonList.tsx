@@ -7,14 +7,17 @@ import { Carousel } from '@mantine/carousel';
 import { useItemPicker, useSelectedIndex } from '@/hooks';
 import { useEffect, useMemo } from 'react';
 import { Pokemon } from '@/pokemon';
+import { FireRedDex } from '@/app/fire-red';
 
 interface Props {
-  data: Pokemon<'firered'>[];
-  dex: 'kanto' | 'national';
+  data: Pokemon[];
+  dex: FireRedDex;
 }
 
 const PokemonList = ({ data, dex }: Props) => {
-  const [initialIndex, setSelectedIndex] = useSelectedIndex({ key: `fire-red-${dex}`, defaultValue: 1 });
+  const [initialIndex, setSelectedIndex] = useSelectedIndex({
+    key: `fire-red-${dex}`,
+  });
 
   const items = useMemo(() => data.map(() => ({ disabled: false })), [data]);
   const { setEmbla, selectedIndex } = useItemPicker({
@@ -27,9 +30,9 @@ const PokemonList = ({ data, dex }: Props) => {
     setSelectedIndex(selectedIndex);
   }, [selectedIndex]);
 
-  const pokemonItems = data?.map((pokemon, index) => (
+  const pokemonItems = data.map((pokemon, index) => (
     <Carousel.Slide key={pokemon.id}>
-      <PokemonListItem {...pokemon} active={index === selectedIndex} />
+      <PokemonListItem {...pokemon} active={index === selectedIndex} dex={dex} />
     </Carousel.Slide>
   ));
 
