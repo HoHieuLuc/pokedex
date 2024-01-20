@@ -13,33 +13,10 @@ export interface Pokemon {
   weight: number;
 }
 
-export type VersionName =
-  | 'red'
-  | 'blue'
-  | 'yellow'
-  | 'gold'
-  | 'silver'
-  | 'crystal'
-  | 'ruby'
-  | 'sapphire'
-  | 'emerald'
-  | 'firered'
-  | 'leafgreen'
-  | 'diamond'
-  | 'pearl'
-  | 'platinum'
-  | 'heartgold'
-  | 'soulsilver'
-  | 'black'
-  | 'white'
-  | 'black-2'
-  | 'white-2'
-  | 'omega-ruby';
-
 export interface PokemonSpecies {
   habitat?: PokemonHabitat;
   name: string;
-  pokedexNumbers: Record<Pokedex, number>;
+  pokedexNumbers: PokedexNumbers;
 }
 
 export type PokemonHabitat =
@@ -113,3 +90,5 @@ export type Pokedex =
   | 'paldea'
   | 'kitakami'
   | 'blueberry';
+
+export type PokedexNumbers = Record<Pokedex, number>;

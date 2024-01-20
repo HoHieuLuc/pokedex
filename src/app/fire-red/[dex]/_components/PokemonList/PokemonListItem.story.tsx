@@ -1,4 +1,4 @@
-import { Pokedex, Pokemon } from '@/pokemon';
+import { PokedexNumbers, Pokemon } from '@/pokemon';
 import PokemonListItem from './PokemonListItem';
 
 export default { title: 'Fire Red/PokemonListItem' };
@@ -27,7 +27,7 @@ const pokemon: Pokemon = {
     name: 'butterfree',
     pokedexNumbers: {
       kanto: 1,
-    } as Record<Pokedex, number>,
+    } as PokedexNumbers
   },
 };
 
