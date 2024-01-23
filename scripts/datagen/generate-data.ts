@@ -1,12 +1,12 @@
 import fs from 'fs-extra';
 import { getPath } from '../utils/get-path';
 import datagenService from './datagen.service';
-import { ResourceData, ResourceList } from './datagen.type';
 import toChunks from '../utils/to-chunks';
 import cache from '../utils/cache';
 import { createLogger } from '../utils/logger';
 import { axiosClient } from '@/lib';
 import toDictionary from '../utils/to-dictionary';
+import { ResourceData, ResourceList } from '@/types';
 
 const logger = createLogger('datagen');
 const limit = 999999;
