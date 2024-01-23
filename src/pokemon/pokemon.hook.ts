@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import pokemonService from './pokemon.service';
+import { useMemo } from 'react';
 
 const QUERY_KEYS = {
   list: ['pokemon', 'list'],
@@ -13,14 +14,44 @@ const useAll = () => {
   });
 };
 
+/**
+ * Get next and previous pokemon names.
+ * @param id - Current pokemon id.
+ */
+const useNextAndPrevious = (id?: number) => {
+  const { data } = useAll();
+
+  const next = useMemo(() => {
+    return data?.find((pokemon) => id && pokemon.id === id + 1);
+  }, [data, id]);
+
+  const previous = useMemo(() => {
+    return data?.find((pokemon) => id && pokemon.id === id - 1);
+  }, [data, id]);
+
+  return { next, previous };
+};
+
 const useByName = (name: string) => {
-  return useQuery({
+  const { data, ...query } = useQuery({
     queryKey: QUERY_KEYS.details(name),
     queryFn: () => pokemonService.getByName(name),
   });
+  const { next, previous } = useNextAndPrevious(data?.id);
+
+  return {
+    ...query,
+    data,
+    /** The next pokemon. */
+    next,
+    /** The previous pokemon. */
+    previous,
+  };
 };
 
 export default {
   useAll,
   useByName,
+  useNextAndPrevious,
+  QUERY_KEYS,
 };

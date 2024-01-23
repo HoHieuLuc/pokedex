@@ -16,6 +16,9 @@ const getEnglishResource = (data: { language: { name: string } }) => {
 
 const getByName = async (name: string) => {
   const { data: pokemon } = await axiosClient.get<PokemonResponse>(`/pokemon/${name}`);
+  if (!pokemon) {
+    return null;
+  }
   const { data: pokemonSpecies } = await axiosClient.get<PokemonSpeciesResponse>(
     `/pokemon-species/${name}`,
   );

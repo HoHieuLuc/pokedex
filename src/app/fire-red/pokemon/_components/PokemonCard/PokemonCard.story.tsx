@@ -1,0 +1,17 @@
+import PokemonCard from './PokemonCard';
+
+export default {
+  title: 'fire-red/PokemonCard',
+};
+
+export const Default = () => (
+  <PokemonCard
+    index={6}
+    name='Charizard'
+    genus='flame pokemon'
+    height={1}
+    weight={1}
+    sprite='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-iii/firered-leafgreen/6.png'
+    flavorText='charizard'
+  />
+);

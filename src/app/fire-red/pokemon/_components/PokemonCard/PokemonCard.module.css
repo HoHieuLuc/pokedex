@@ -1,0 +1,66 @@
+.root {
+  border-radius: 2rem;
+  border: 0.5rem solid #c6b58c;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  --_fr-section-radius: 1.5rem;
+}
+
+.generalInfo {
+  border-top-left-radius: var(--_fr-section-radius);
+  border-top-right-radius: var(--_fr-section-radius);
+
+  background-color: white;
+  padding: 1rem 3rem 0 3rem;
+  display: grid;
+  grid-template-columns: 50% 50%;
+
+  &Text {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    p {
+      font-size: var(--fr-fz-sm);
+    }
+
+    :global(.title) {
+      font-size: var(--fr-fz-md);
+      margin-bottom: 0.3em;
+
+      span {
+        font-size: var(--fr-fz-sm);
+      }
+    }
+  }
+
+  &Sprite {
+    img {
+      image-rendering: pixelated;
+      object-fit: contain;
+      height: 5.5em;
+    }
+  }
+}
+
+.divider {
+  background-color: #7b6339;
+  height: 1rem;
+  border-top: 0.25rem solid #c6b58c;
+  border-bottom: 0.25rem solid #c6b58c;
+}
+
+.description {
+  border-bottom-left-radius: var(--_fr-section-radius);
+  border-bottom-right-radius: var(--_fr-section-radius);
+
+  background: #e7dec6;
+  padding: 1rem 0.2rem;
+  flex-grow: 1;
+
+  p {
+    font-size: var(--fr-fz-md);
+  }
+}

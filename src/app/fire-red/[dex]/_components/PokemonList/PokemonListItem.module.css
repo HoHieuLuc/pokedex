@@ -8,6 +8,7 @@
   &[data-active='true'] {
     &::before {
       content: '▶';
+      color: var(--fr-black);
       position: absolute;
       margin-top: auto;
       margin-bottom: auto;
