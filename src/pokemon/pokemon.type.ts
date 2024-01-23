@@ -1,8 +1,3 @@
-export interface GetAllPayload {
-  limit: number;
-  offset: number;
-}
-
 export interface Pokemon {
   id: number;
   name: string;
@@ -13,7 +8,7 @@ export interface Pokemon {
   weight: number;
 }
 
-export interface PokemonSpecies {
+interface PokemonSpecies {
   habitat?: PokemonHabitat;
   name: string;
   pokedexNumbers: PokedexNumbers;
@@ -30,7 +25,7 @@ export type PokemonHabitat =
   | 'sea'
   | 'rare';
 
-export interface PokemonTypeData {
+interface PokemonTypeData {
   slot: number;
   type: {
     name: PokemonType;
