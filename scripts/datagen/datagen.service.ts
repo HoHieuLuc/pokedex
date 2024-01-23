@@ -21,11 +21,11 @@ const get = async <T>(path: string) => {
 };
 
 const getPokemon = async (name: string) => {
-  return get<PokemonResponse>(`pokemon/${name}`);
+  return get<PokemonResponse>(`/pokemon/${name}`);
 };
 
 const getPokemonSpecies = async (name: string) => {
-  return get<PokemonSpeciesResponse>(`pokemon-species/${name}`);
+  return get<PokemonSpeciesResponse>(`/pokemon-species/${name}`);
 };
 
 export default {

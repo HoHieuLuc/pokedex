@@ -5,8 +5,8 @@ import toChunks from '../utils/to-chunks';
 import cache from '../utils/cache';
 import { createLogger } from '../utils/logger';
 import { axiosClient } from '@/lib';
-import toDictionary from '../utils/to-dictionary';
 import { ResourceData, ResourceList } from '@/types';
+import { toDictionary } from '@/utils';
 
 const logger = createLogger('datagen');
 const limit = 999999;

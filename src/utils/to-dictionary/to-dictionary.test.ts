@@ -1,6 +1,6 @@
 import toDictionary from './to-dictionary';
 
-describe('scripts/utils/to-dictionary', () => {
+describe('utils/to-dictionary', () => {
   it('should convert an array of objects to a dictionary', () => {
     const array = [
       { id: 1, name: 'John' },
