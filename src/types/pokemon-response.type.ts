@@ -77,7 +77,7 @@ type VersionGroupName =
   | 'colosseum'
   | 'xd';
 
-interface Sprites {
+export interface Sprites {
   backDefault: string;
   backFemale?: string;
   backShiny: string;

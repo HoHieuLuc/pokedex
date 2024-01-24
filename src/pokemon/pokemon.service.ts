@@ -1,5 +1,5 @@
 import { PokemonResponse, PokemonSpeciesResponse } from '@/types';
-import { Pokemon } from './pokemon.type';
+import { Pokemon, PokemonDetails } from './pokemon.type';
 import { axiosClient } from '@/lib';
 import { toDictionary } from '@/utils';
 
@@ -14,14 +14,14 @@ const getEnglishResource = (data: { language: { name: string } }) => {
   return data.language.name === 'en';
 };
 
-const getByName = async (name: string) => {
-  const { data: pokemon } = await axiosClient.get<PokemonResponse>(`/pokemon/${name}`);
-  if (!pokemon) {
-    return null;
-  }
+const getByName = async (name: string): Promise<PokemonDetails | null> => {
   const { data: pokemonSpecies } = await axiosClient.get<PokemonSpeciesResponse>(
     `/pokemon-species/${name}`,
   );
+  if (!pokemonSpecies) {
+    return null;
+  }
+  const { data: pokemon } = await axiosClient.get<PokemonResponse>(`/pokemon/${pokemonSpecies.id}`);
 
   // flavor text
   const flavorTextEntries = pokemonSpecies.flavorTextEntries.filter(getEnglishResource);
