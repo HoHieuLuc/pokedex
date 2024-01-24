@@ -10,7 +10,7 @@ import { ItemPicker } from '@/app/fire-red/_components';
 import { useEffect, useMemo } from 'react';
 
 const TableOfContents = () => {
-  const [initialIndex, setSelectedIndex] = useSelectedIndex({
+  const { initialIndex, setSelectedIndex } = useSelectedIndex({
     key: 'fire-red-toc',
     defaultValue: 1,
   });

@@ -25,14 +25,14 @@ const useSelectedIndex = ({ key, defaultValue = 0 }: UseSelectedIndexProps) => {
     return parseNumber(selection?.[key], defaultValue);
   }, [key]);
 
-  const setSelectedIndex = (index: number) => {
+  const setSelectedIndex = (updater: number | ((prev: number) => number)) => {
     queryClient.setQueryData<Selections>(QUERY_KEYS.selections, (prev) => ({
       ...prev,
-      [key]: index,
+      [key]: typeof updater === 'number' ? updater : updater(prev?.[key] || defaultValue),
     }));
   };
 
-  return [initialIndex, setSelectedIndex] as const;
+  return { initialIndex, setSelectedIndex, key };
 };
 
 export default useSelectedIndex;

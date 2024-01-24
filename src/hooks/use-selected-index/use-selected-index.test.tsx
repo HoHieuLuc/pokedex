@@ -21,7 +21,7 @@ describe('hooks/use-selected-index', () => {
       wrapper: wrapper(),
     });
 
-    expect(result.current[0]).toBe(defaultProps.defaultValue);
+    expect(result.current.initialIndex).toBe(defaultProps.defaultValue);
   });
 
   it('should return initital value from query', () => {
@@ -35,7 +35,7 @@ describe('hooks/use-selected-index', () => {
       wrapper: wrapper(queryClient),
     });
 
-    expect(result.current[0]).toBe(123);
+    expect(result.current.initialIndex).toBe(123);
   });
 
   it('should memoize initial value', () => {
@@ -43,8 +43,8 @@ describe('hooks/use-selected-index', () => {
       wrapper: wrapper(),
     });
 
-    act(() => result.current[1](0));
+    act(() => result.current.setSelectedIndex(0));
 
-    expect(result.current[0]).toBe(defaultProps.defaultValue);
+    expect(result.current.initialIndex).toBe(defaultProps.defaultValue);
   });
 });

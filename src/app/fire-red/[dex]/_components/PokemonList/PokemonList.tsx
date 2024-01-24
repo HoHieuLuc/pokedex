@@ -17,7 +17,7 @@ interface Props {
 
 const PokemonList = ({ data, dex }: Props) => {
   const navigate = useNavigate({ defaultValue: '/fire-red' });
-  const [initialIndex, setSelectedIndex] = useSelectedIndex({
+  const { initialIndex, setSelectedIndex } = useSelectedIndex({
     key: `fire-red-${dex}`,
   });
 
@@ -32,7 +32,7 @@ const PokemonList = ({ data, dex }: Props) => {
     setSelectedIndex(selectedIndex);
   }, [selectedIndex]);
 
-  useHotkeys([['Z', () => navigate.navigate(`/fire-red/pokemon/${data[selectedIndex].name}`)]]);
+  useHotkeys([['Z', () => navigate.navigate(`/fire-red/pokemon/${data[selectedIndex].slug}`)]]);
 
   const pokemonItems = data.map((pokemon, index) => (
     <Carousel.Slide key={pokemon.id}>

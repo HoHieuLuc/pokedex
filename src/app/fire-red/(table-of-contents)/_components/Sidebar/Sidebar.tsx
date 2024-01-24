@@ -1,6 +1,7 @@
 import { Text } from '@/app/fire-red/_components';
 import { Stack } from '@mantine/core';
 import classes from './Sidebar.module.css';
+import { POKEDEX_RANGES } from '@/config';
 
 const Sidebar = () => {
   return (
@@ -11,11 +12,11 @@ const Sidebar = () => {
           <ul className={classes.list}>
             <li>
               <Text>KANTO</Text>
-              <Text variant='orange'>151</Text>
+              <Text variant='orange'>{POKEDEX_RANGES.kanto.max}</Text>
             </li>
             <li>
               <Text>NATIONAL</Text>
-              <Text variant='orange'>386</Text>
+              <Text variant='orange'>{POKEDEX_RANGES.fireRedNational.max}</Text>
             </li>
           </ul>
         </div>
