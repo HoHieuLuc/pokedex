@@ -1,6 +1,30 @@
 require('@testing-library/jest-dom');
 require('fake-indexeddb/auto');
 
+// https://github.com/scottrippey/next-router-mock/issues/67#issuecomment-1564906960
+const mockRouter = require('next-router-mock');
+
+const useRouter = mockRouter.useRouter;
+
+const MockNextNavigation = {
+  ...mockRouter,
+  notFound: jest.fn(),
+  redirect: jest.fn().mockImplementation((url) => {
+    mockRouter.memoryRouter.setCurrentUrl(url);
+  }),
+  usePathname: () => {
+    const router = useRouter();
+    return router.asPath;
+  },
+  useSearchParams: () => {
+    const router = useRouter();
+    const path = router.query;
+    return new URLSearchParams(path);
+  },
+};
+
+jest.mock('next/navigation', () => MockNextNavigation);
+
 const { getComputedStyle } = window;
 window.getComputedStyle = (elt) => getComputedStyle(elt);
 
