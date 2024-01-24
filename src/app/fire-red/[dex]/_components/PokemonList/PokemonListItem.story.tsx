@@ -7,6 +7,7 @@ const pokemon: Pokemon = {
   id: 1,
   height: 1,
   name: 'butterfree',
+  slug: 'butterfree',
   order: 1,
   types: [
     {

@@ -13,7 +13,9 @@ const PageLayout = ({ children }: Props) => {
           {POKEMON} LIST
         </Text>
       </Navbar>
-      <div className='main'>{children}</div>
+      <div className='main' data-variant='details'>
+        {children}
+      </div>
       <Navbar align='end' justify='end'>
         <Text variant='white' fz={30}>
           Button

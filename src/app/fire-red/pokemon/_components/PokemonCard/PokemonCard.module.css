@@ -8,7 +8,7 @@
   --_fr-section-radius: 1.5rem;
 }
 
-.generalInfo {
+.general-info {
   border-top-left-radius: var(--_fr-section-radius);
   border-top-right-radius: var(--_fr-section-radius);
 
@@ -17,7 +17,7 @@
   display: grid;
   grid-template-columns: 50% 50%;
 
-  &Text {
+  &-text {
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -36,7 +36,12 @@
     }
   }
 
-  &Sprite {
+  &-stat-grid {
+    display: grid;
+    grid-template-columns: 30% auto;
+  }
+
+  &-sprite {
     img {
       image-rendering: pixelated;
       object-fit: contain;

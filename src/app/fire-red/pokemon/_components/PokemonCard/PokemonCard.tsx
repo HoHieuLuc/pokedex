@@ -12,21 +12,37 @@ interface Props {
   flavorText: string;
 }
 
+const heightInFeet = (height: number) => {
+  const [feet, inches] = Math.round(height / 3.048)
+    .toFixed(2)
+    .split('.');
+
+  return `${feet}'${inches}"`;
+};
+
+const weightInPounds = (weight: number) => {
+  return `${((weight / 10) * 2.205).toFixed(1)} lbs.`;
+};
+
 const PokemonCard = (props: Props) => {
   const { index, name, genus, height, weight, sprite, flavorText } = props;
 
   return (
     <div className={classes.root}>
-      <div className={classes.generalInfo}>
-        <div className={classes.generalInfoText}>
+      <div className={classes['general-info']}>
+        <div className={classes['general-info-text']}>
           <Text className='title'>
             <Text span>No{index.toString().padStart(3, '0')}</Text> {name}
           </Text>
           <Text>{genus}</Text>
-          <Text>HT {height}</Text>
-          <Text>WT {weight} lbs.</Text>
+          <div className={classes['general-info-stat-grid']}>
+            <Text>HT</Text>
+            <Text>{heightInFeet(height)}</Text>
+            <Text>WT</Text>
+            <Text>{weightInPounds(weight)}</Text>
+          </div>
         </div>
-        <div className={classes.generalInfoSprite}>
+        <div className={classes['general-info-sprite']}>
           <Image className='sprite' src={sprite} />
         </div>
       </div>

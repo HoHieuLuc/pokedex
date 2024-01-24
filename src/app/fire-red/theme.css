@@ -30,4 +30,9 @@
   background-color: #eff7f7;
   background-image: linear-gradient(to bottom, white 5px, transparent 5px);
   background-size: 100% 10px;
+
+  &[data-variant='details'] {
+    padding: 0.3rem;
+    background: #e7dec6;
+  }
 }
