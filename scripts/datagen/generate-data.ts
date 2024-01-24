@@ -99,6 +99,7 @@ const generateData = async () => {
     return {
       id: pokemon.id,
       name: pokemon.name,
+      slug: species.name,
       types: pokemon.types,
       order: pokemon.order,
       height: pokemon.height,

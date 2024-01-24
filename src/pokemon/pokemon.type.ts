@@ -1,6 +1,9 @@
+import { Sprites } from '@/types';
+
 export interface Pokemon {
   id: number;
   name: string;
+  slug: string;
   types: PokemonTypeData[];
   species: PokemonSpecies;
   order: number;
@@ -9,8 +12,8 @@ export interface Pokemon {
 }
 
 interface PokemonSpecies {
-  habitat?: PokemonHabitat;
   name: string;
+  habitat?: PokemonHabitat;
   pokedexNumbers: PokedexNumbers;
 }
 
@@ -87,3 +90,15 @@ export type Pokedex =
   | 'blueberry';
 
 export type PokedexNumbers = Record<Pokedex, number>;
+
+export interface PokemonDetails {
+  genus: string;
+  types: string[];
+  flavorTexts: Record<string, string>;
+  pokedexNumbers: Record<string, number>;
+  id: number;
+  name: string;
+  height: number;
+  weight: number;
+  sprites: Sprites;
+}
