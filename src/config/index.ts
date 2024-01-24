@@ -25,3 +25,14 @@ export const POKEMON_TYPES: Array<PokemonType> = [
   'steel',
   'water',
 ];
+
+export const POKEDEX_RANGES = {
+  kanto: {
+    min: 1,
+    max: 151,
+  },
+  fireRedNational: {
+    min: 1,
+    max: 386,
+  },
+};

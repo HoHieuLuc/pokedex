@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { FireRedDex } from './fire-red.type';
 import fireRedService from './fire-red.service';
 import { pokemonHook } from '@/pokemon';
+import { POKEDEX_RANGES } from '@/config';
 
 const QUERY_KEYS = {
   dex: (dex: FireRedDex) => ['fire-red', 'dex', dex],
@@ -19,7 +20,8 @@ const useByName = (name: string) => {
 
   return {
     ...query,
-    data: data?.sprites.versions?.['generation-iii']?.['firered-leafgreen'] ? data : null,
+    data:
+      data && data?.pokedexNumbers['national'] <= POKEDEX_RANGES.fireRedNational.max ? data : null,
   };
 };
 

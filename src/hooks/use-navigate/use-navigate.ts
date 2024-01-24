@@ -18,7 +18,7 @@ const useNavigate = ({ defaultValue }: Props) => {
    * Navigate and store the previous url in session storage.
    */
   const navigate = (href: string, options?: NavigateOptions) => {
-    setPreviousUrl(path);
+    setPreviousUrl(path.toLowerCase());
     router.push(href, options);
   };
 
