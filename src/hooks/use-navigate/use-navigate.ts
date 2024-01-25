@@ -33,7 +33,7 @@ const useNavigate = ({ defaultValue }: Props) => {
     router.push(href, options);
   };
 
-  return { previousUrl, navigate, back, push };
+  return { previousUrl, navigate, back, push, path };
 };
 
 export default useNavigate;

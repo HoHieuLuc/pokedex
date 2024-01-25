@@ -45,7 +45,7 @@
     img {
       image-rendering: pixelated;
       object-fit: contain;
-      height: 5.5em;
+      height: calc(var(--fr-fz-md) * 5.5);
     }
   }
 }

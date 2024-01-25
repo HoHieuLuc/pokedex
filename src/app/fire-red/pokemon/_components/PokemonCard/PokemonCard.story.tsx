@@ -1,7 +1,7 @@
 import PokemonCard from './PokemonCard';
 
 export default {
-  title: 'fire-red/PokemonCard',
+  title: 'Fire Red/PokemonCard',
 };
 
 export const Default = () => (

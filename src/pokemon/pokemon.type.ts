@@ -93,7 +93,7 @@ export type PokedexNumbers = Record<Pokedex, number>;
 
 export interface PokemonDetails {
   genus: string;
-  types: string[];
+  types: Array<PokemonType>;
   flavorTexts: Record<string, string>;
   pokedexNumbers: Record<string, number>;
   id: number;

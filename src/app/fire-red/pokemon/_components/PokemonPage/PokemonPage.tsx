@@ -2,10 +2,11 @@
 
 import fireRedHook from '@/app/fire-red/fire-red.hook';
 import PokemonCard from '../PokemonCard/PokemonCard';
-import { useHotkeys } from '@mantine/hooks';
-import { useNavigate, useSelectedIndex } from '@/hooks';
+import { useGameHotkeys, useNavigate, useSelectedIndex } from '@/hooks';
 import { POKEDEX_RANGES } from '@/config';
 import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import PokemonArea from '../PokemonArea/PokemonArea';
 
 interface Props {
   name: string;
@@ -13,6 +14,9 @@ interface Props {
 
 const PokemonPage = ({ name }: Props) => {
   const navigate = useNavigate({ defaultValue: '/fire-red' });
+  const searchParams = useSearchParams();
+  const tab = searchParams.get('tab');
+
   const { data, isLoading, next, previous } = fireRedHook.useByName(name);
   const isOpenedFromKantoDex = navigate.previousUrl === '/fire-red/kanto';
 
@@ -54,11 +58,24 @@ const PokemonPage = ({ name }: Props) => {
     }
   };
 
-  useHotkeys([
-    ['X', navigate.back],
-    ['ArrowUp', () => handleArrows('previous')],
-    ['ArrowDown', () => handleArrows('next')],
-  ]);
+  useGameHotkeys({
+    A: () => {
+      if (tab === 'area') {
+        navigate.back();
+      } else {
+        navigate.push(`${navigate.path}?tab=area`);
+      }
+    },
+    B: () => {
+      if (tab === 'area') {
+        navigate.push(navigate.path);
+      } else {
+        navigate.back();
+      }
+    },
+    ArrowUp: () => handleArrows('previous'),
+    ArrowDown: () => handleArrows('next'),
+  });
 
   if (isLoading || !data) {
     return <></>;
@@ -66,16 +83,33 @@ const PokemonPage = ({ name }: Props) => {
 
   return (
     <>
-      <PokemonCard
-        {...data}
-        index={data.pokedexNumbers['national']}
-        flavorText={data.flavorTexts['firered']}
-        sprite={
-          data.sprites.versions['generation-iii']?.['firered-leafgreen'].frontDefault ||
-          data.sprites.versions['generation-iii']?.['emerald'].frontDefault ||
-          data.sprites.frontDefault
-        }
-      />
+      {tab === 'area' ? (
+        <PokemonArea
+          {...data}
+          index={data.pokedexNumbers['national']}
+          sprite={
+            data.sprites.versions['generation-iii']?.['firered-leafgreen'].frontDefault ||
+            data.sprites.versions['generation-iii']?.['emerald'].frontDefault ||
+            data.sprites.frontDefault
+          }
+          icon={
+            data.sprites.versions['generation-vii']?.['icons'].frontDefault ||
+            data.sprites.versions['generation-viii']?.['icons'].frontDefault ||
+            data.sprites.frontDefault
+          }
+        />
+      ) : (
+        <PokemonCard
+          {...data}
+          index={data.pokedexNumbers['national']}
+          flavorText={data.flavorTexts['firered']}
+          sprite={
+            data.sprites.versions['generation-iii']?.['firered-leafgreen'].frontDefault ||
+            data.sprites.versions['generation-iii']?.['emerald'].frontDefault ||
+            data.sprites.frontDefault
+          }
+        />
+      )}
     </>
   );
 };
