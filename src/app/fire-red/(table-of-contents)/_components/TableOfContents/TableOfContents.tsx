@@ -3,8 +3,7 @@
 import { Carousel } from '@mantine/carousel';
 import tableOfContents from './table-of-contents';
 import TableOfContentsItem from './TableOfContentsItem';
-import { useItemPicker, useSelectedIndex } from '@/hooks';
-import { useHotkeys } from '@mantine/hooks';
+import { useGameHotkeys, useItemPicker, useSelectedIndex } from '@/hooks';
 import { useRouter } from 'next/navigation';
 import { ItemPicker } from '@/app/fire-red/_components';
 import { useEffect, useMemo } from 'react';
@@ -33,7 +32,9 @@ const TableOfContents = () => {
     items,
   });
 
-  useHotkeys([['Z', () => router.push(`/fire-red/${selectedItem.href}`)]]);
+  useGameHotkeys({
+    A: () => router.push(`/fire-red/${selectedItem.href}`),
+  });
 
   useEffect(() => {
     setSelectedIndex(selectedIndex);

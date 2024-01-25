@@ -4,11 +4,10 @@ import PokemonListItem from './PokemonListItem';
 import { Flex } from '@mantine/core';
 import { ItemPicker } from '@/app/fire-red/_components';
 import { Carousel } from '@mantine/carousel';
-import { useItemPicker, useNavigate, useSelectedIndex } from '@/hooks';
+import { useGameHotkeys, useItemPicker, useNavigate, useSelectedIndex } from '@/hooks';
 import { useEffect, useMemo } from 'react';
 import { Pokemon } from '@/pokemon';
 import { FireRedDex } from '@/app/fire-red';
-import { useHotkeys } from '@mantine/hooks';
 
 interface Props {
   data: Pokemon[];
@@ -32,7 +31,9 @@ const PokemonList = ({ data, dex }: Props) => {
     setSelectedIndex(selectedIndex);
   }, [selectedIndex]);
 
-  useHotkeys([['Z', () => navigate.navigate(`/fire-red/pokemon/${data[selectedIndex].slug}`)]]);
+  useGameHotkeys({
+    A: () => navigate.navigate(`/fire-red/pokemon/${data[selectedIndex].slug}`),
+  });
 
   const pokemonItems = data.map((pokemon, index) => (
     <Carousel.Slide key={pokemon.id}>

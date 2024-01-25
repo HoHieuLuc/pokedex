@@ -1,4 +1,3 @@
-import '../../theme.css';
 import Text from './Text';
 
 export default { title: 'Fire Red/Text' };

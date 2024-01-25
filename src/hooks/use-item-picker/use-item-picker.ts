@@ -1,8 +1,8 @@
 import { throttle } from '@/utils';
 import { Embla } from '@mantine/carousel';
-import { useHotkeys } from '@mantine/hooks';
 import { useCallback, useState } from 'react';
 import useStateRef from '../use-state-ref/use-state-ref';
+import useGameHotkeys from '../use-game-hotkeys/use-game-hotkeys';
 
 function findPreviousNonDisabledItemIndex(items: Array<UseItemPickerItem>, currentIndex: number) {
   for (let i = currentIndex - 1; i >= 0; i--) {
@@ -167,13 +167,12 @@ const useItemPicker = <T extends UseItemPickerItem>({
     [embla, items],
   );
 
-  // TODO: implement mobile gesture
-  useHotkeys([
-    ['ArrowUp', handleArrowUp],
-    ['ArrowDown', handleArrowDown],
-    ['ArrowRight', handleArrowRight],
-    ['ArrowLeft', handleArrowLeft],
-  ]);
+  useGameHotkeys({
+    ArrowUp: handleArrowUp,
+    ArrowDown: handleArrowDown,
+    ArrowLeft: handleArrowLeft,
+    ArrowRight: handleArrowRight,
+  });
 
   return {
     embla,
