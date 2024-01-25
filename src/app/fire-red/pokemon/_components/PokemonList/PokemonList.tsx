@@ -12,12 +12,13 @@ import { FireRedDex } from '@/app/fire-red';
 interface Props {
   data: Pokemon[];
   dex: FireRedDex;
+  selectedIndexKey: string;
 }
 
-const PokemonList = ({ data, dex }: Props) => {
+const PokemonList = ({ data, dex, selectedIndexKey }: Props) => {
   const navigate = useNavigate({ defaultValue: '/fire-red' });
   const { initialIndex, setSelectedIndex } = useSelectedIndex({
-    key: `fire-red-${dex}`,
+    key: selectedIndexKey,
   });
 
   const items = useMemo(() => data.map(() => ({ disabled: false })), [data]);
