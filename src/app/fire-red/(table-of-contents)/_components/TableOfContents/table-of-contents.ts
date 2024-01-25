@@ -25,7 +25,7 @@ const habitats = [
 const searchModes = ['A TO Z', 'TYPE', 'LIGHTEST', 'SMALLEST'].map<TableOfContent>((mode) => ({
   type: 'content',
   title: `${mode} MODE`,
-  href: '',
+  href: `search?sort=${mode.toLowerCase().split(' ').join('-')}`,
 }));
 
 const tableOfContents: TableOfContent[] = [

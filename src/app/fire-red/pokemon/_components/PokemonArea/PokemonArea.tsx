@@ -26,10 +26,7 @@ const PokemonArea = (props: Props) => {
       <div className={classes['info-wrapper']}>
         <div className={classes.info}>
           <div>
-            <Image
-              className={classes.icon}
-              src={icon}
-            />
+            <Image className={classes.icon} src={icon} />
           </div>
           <div>
             <Text className={classes.index}>No{index.toString().padStart(3, '0')}</Text>
