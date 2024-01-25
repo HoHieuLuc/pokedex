@@ -28,7 +28,7 @@ export type PokemonHabitat =
   | 'sea'
   | 'rare';
 
-interface PokemonTypeData {
+export interface PokemonTypeData {
   slot: number;
   type: {
     name: PokemonType;

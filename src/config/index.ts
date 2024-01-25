@@ -6,24 +6,24 @@ export const POKEMON = 'POKéMON';
 export const POKEDEX = 'POKéDEX';
 
 export const POKEMON_TYPES: Array<PokemonType> = [
-  'bug',
-  'dark',
-  'dragon',
-  'electric',
-  'fairy',
-  'fighting',
-  'fire',
-  'flying',
-  'ghost',
-  'grass',
-  'ground',
-  'ice',
   'normal',
+  'fighting',
+  'flying',
   'poison',
-  'psychic',
+  'ground',
   'rock',
+  'bug',
+  'ghost',
   'steel',
+  'fire',
   'water',
+  'grass',
+  'electric',
+  'psychic',
+  'ice',
+  'dragon',
+  'dark',
+  'fairy',
 ];
 
 export const POKEDEX_RANGES = {
@@ -36,3 +36,11 @@ export const POKEDEX_RANGES = {
     max: 386,
   },
 };
+
+export const POKEMON_TYPES_MAP: Record<PokemonType, number> = POKEMON_TYPES.reduce(
+  (acc, cur, index) => {
+    acc[cur] = index;
+    return acc;
+  },
+  {} as Record<PokemonType, number>,
+);
