@@ -1,4 +1,5 @@
-import { useHotkeys, useLocalStorage } from '@mantine/hooks';
+import { useHotkeys } from '@mantine/hooks';
+import useJsonLocalStorage from '../use-json-local-storage/use-json-local-storage';
 
 interface GameHotkeys {
   A: string;
@@ -23,26 +24,9 @@ type UseGameHotkeysProps = {
 };
 
 const useGameHotkeys = (props: UseGameHotkeysProps) => {
-  const [hotkeys] = useLocalStorage({
+  const [hotkeys] = useJsonLocalStorage({
     key: 'game-hotkeys',
     defaultValue,
-    serialize(value) {
-      try {
-        return JSON.stringify(value);
-      } catch {
-        return JSON.stringify(defaultValue);
-      }
-    },
-    deserialize(value) {
-      if (!value) {
-        return defaultValue;
-      }
-      try {
-        return JSON.parse(value) as GameHotkeys;
-      } catch {
-        return defaultValue;
-      }
-    },
   });
 
   useHotkeys(
