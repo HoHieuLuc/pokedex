@@ -1,10 +1,11 @@
+import { Suspense } from 'react';
 import PokemonSearchPage from './_components/PokemonSearchPage/PokemonSearchPage';
 
 const Page = () => {
   return (
-    <div>
+    <Suspense>
       <PokemonSearchPage />
-    </div>
+    </Suspense>
   );
 };
 

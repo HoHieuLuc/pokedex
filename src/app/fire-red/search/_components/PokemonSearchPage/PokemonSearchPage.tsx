@@ -7,10 +7,16 @@ import { pokemonService } from '@/pokemon';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 
+const validSorts = ['a-to-z', 'type', 'lightest', 'smallest'];
+
+const getSort = (sort: string) => {
+  return validSorts.includes(sort) ? sort : 'a-to-z';
+};
+
 const PokemonSearchPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const sort = searchParams.get('sort') || 'a-to-z';
+  const sort = getSort(searchParams.get('sort') || '');
 
   const { data, isLoading } = fireRedHook.useDex('national');
 
