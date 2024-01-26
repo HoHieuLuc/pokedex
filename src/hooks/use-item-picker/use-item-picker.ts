@@ -1,6 +1,6 @@
 import { throttle } from '@/utils';
 import { Embla } from '@mantine/carousel';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useStateRef from '../use-state-ref/use-state-ref';
 import useGameHotkeys from '../use-game-hotkeys/use-game-hotkeys';
 
@@ -50,6 +50,10 @@ const useItemPicker = <T extends UseItemPickerItem>({
 }: UseItemPickerProps<T>) => {
   const [embla, setEmbla] = useState<Embla | null>(null);
   const [selectedIndex, setSelectedIndex, selectedIndexRef] = useStateRef(initialIndex);
+
+  useEffect(() => {
+    setSelectedIndex(initialIndex);
+  }, [initialIndex]);
 
   const handleArrowUp = useCallback(
     throttle(() => {
@@ -179,6 +183,7 @@ const useItemPicker = <T extends UseItemPickerItem>({
     setEmbla,
     selectedItem: items[selectedIndex],
     selectedIndex: selectedIndex,
+    setSelectedIndex,
   };
 };
 

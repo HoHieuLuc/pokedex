@@ -35,7 +35,7 @@ const PokemonSearchPage = () => {
     B: () => router.push('/fire-red'),
   });
 
-  if (isLoading) {
+  if (isLoading || !data) {
     return <></>;
   }
 

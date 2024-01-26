@@ -27,7 +27,6 @@ const TableOfContents = () => {
   const { setEmbla, selectedIndex, selectedItem } = useItemPicker({
     initialIndex: initialIndex,
     edges: 3,
-    throttleDelay: 0,
     stepsToSkip: 0,
     items,
   });
