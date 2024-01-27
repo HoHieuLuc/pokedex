@@ -5,7 +5,6 @@ import PokemonCard from '../PokemonCard/PokemonCard';
 import { useGameHotkeys, useNavigate, useSelectedIndex } from '@/hooks';
 import { POKEDEX_RANGES } from '@/config';
 import { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
 import PokemonArea from '../PokemonArea/PokemonArea';
 
 interface Props {
@@ -14,8 +13,7 @@ interface Props {
 
 const PokemonPage = ({ name }: Props) => {
   const navigate = useNavigate({ defaultValue: '/fire-red' });
-  const searchParams = useSearchParams();
-  const tab = searchParams.get('tab');
+  const tab = navigate.searchParams.get('tab');
 
   const { data, isLoading, next, previous } = fireRedHook.useByName(name);
   const isOpenedFromKantoDex = navigate.previousUrl === '/fire-red/kanto';
