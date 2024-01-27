@@ -15,11 +15,10 @@ interface Props {
 const PokemonArea = (props: Props) => {
   const { index, name, types, sprite, icon, height } = props;
 
-  // TODO: refactor this
   const characterHeight = 14;
-  const pokemonHeight = height;
-  const characterPokemonRatio = characterHeight / pokemonHeight;
-  const pokemonCharacterRatio = pokemonHeight / characterHeight;
+  const heightRatio = characterHeight / height;
+
+  const typesExcludingFairy = types.filter((type) => type !== 'fairy');
 
   return (
     <div className={classes.root}>
@@ -32,9 +31,10 @@ const PokemonArea = (props: Props) => {
             <Text className={classes.index}>No{index.toString().padStart(3, '0')}</Text>
             <Text className={classes.name}>{name}</Text>
             <Flex>
-              {types.map((type) => (
+              {typesExcludingFairy.map((type) => (
                 <TypeBadge key={type} type={type} />
               ))}
+              {typesExcludingFairy.length === 0 && <TypeBadge type='normal' />}
             </Flex>
           </div>
         </div>
@@ -44,12 +44,12 @@ const PokemonArea = (props: Props) => {
             <Image
               className={classes.sillohete}
               src={sprite}
-              style={{ '--ratio': characterPokemonRatio < 1 ? 1 : pokemonCharacterRatio }}
+              style={{ '--ratio': heightRatio < 1 ? 1 : 1 / heightRatio }}
             />
             <Image
               className={classes.sillohete}
               src='/fire-red-character-sillohete.png'
-              style={{ '--ratio': characterPokemonRatio >= 1 ? 1 : characterPokemonRatio }}
+              style={{ '--ratio': heightRatio >= 1 ? 1 : heightRatio }}
             />
           </div>
         </div>

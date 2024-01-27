@@ -21,12 +21,11 @@ const getDex = async (dex: FireRedDex) => {
       return a.species.pokedexNumbers[dex] - b.species.pokedexNumbers[dex];
     })
     .map((pokemon) => {
-      // remove fairy type
-      const types = pokemon.types.filter((type) => type.type.name !== 'fairy');
+      const typesExcludingFairy = pokemon.types.filter((type) => type.type.name !== 'fairy');
 
       return {
         ...pokemon,
-        types: types.length === 0 ? [normalType] : types,
+        types: typesExcludingFairy.length === 0 ? [normalType] : typesExcludingFairy,
       };
     });
 };
