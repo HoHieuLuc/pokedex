@@ -1,6 +1,6 @@
 import { throttle } from '@/utils';
 import { Embla } from '@mantine/carousel';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useStateRef from '../use-state-ref/use-state-ref';
 import useGameHotkeys from '../use-game-hotkeys/use-game-hotkeys';
 
@@ -51,6 +51,20 @@ const useItemPicker = <T extends UseItemPickerItem>({
   const [embla, setEmbla] = useState<Embla | null>(null);
   const [selectedIndex, setSelectedIndex, selectedIndexRef] = useStateRef(initialIndex);
 
+  useEffect(() => {
+    if (!embla) {
+      return;
+    }
+    const handleResize = () => {
+      embla.reInit();
+    };
+    embla.on('resize', handleResize);
+
+    return () => {
+      embla.off('resize', handleResize);
+    };
+  }, [embla]);
+
   const handleArrowUp = useCallback(
     throttle(() => {
       if (!embla || items.length === 0) {
@@ -65,9 +79,10 @@ const useItemPicker = <T extends UseItemPickerItem>({
         return;
       }
 
-      const [firstItemIndex] = embla.slidesInView();
+      const slidesInView = embla.slidesInView();
+      const [firstItemIndex] = slidesInView;
       // show the first [edges] items when scrolling up
-      if (_selectedIndex - firstItemIndex <= edges) {
+      if (_selectedIndex - firstItemIndex <= edges || !slidesInView.includes(nextActiveIndex)) {
         embla.scrollTo(nextActiveIndex - edges);
       }
 
@@ -91,11 +106,10 @@ const useItemPicker = <T extends UseItemPickerItem>({
       if (nextActiveIndex === -1) {
         return;
       }
-
       const slidesInView = embla.slidesInView();
       const lastItemIndex = slidesInView[slidesInView.length - 1];
       // show the last [edges] items when scrolling down
-      if (lastItemIndex - _selectedIndex <= edges) {
+      if (lastItemIndex - _selectedIndex <= edges || !slidesInView.includes(nextActiveIndex)) {
         embla.scrollTo(nextActiveIndex + edges + 1 - slidesInView.length);
       }
       setSelectedIndex(nextActiveIndex);
@@ -127,7 +141,7 @@ const useItemPicker = <T extends UseItemPickerItem>({
       const slidesInView = embla.slidesInView();
       const lastItemIndex = slidesInView[slidesInView.length - 1];
       // show the last [edges] items when scrolling down
-      if (nextActiveIndex + edges >= lastItemIndex) {
+      if (nextActiveIndex + edges >= lastItemIndex || !slidesInView.includes(nextActiveIndex)) {
         embla.scrollTo(nextActiveIndex + edges + 1 - slidesInView.length);
       }
       setSelectedIndex(nextActiveIndex);
@@ -155,10 +169,10 @@ const useItemPicker = <T extends UseItemPickerItem>({
         return;
       }
 
-      const [firstItemIndex] = embla.slidesInView();
+      const slidesInView = embla.slidesInView();
+      const [firstItemIndex] = slidesInView;
       // show the first [edges] items when scrolling up
-      // nextActiveIndex + edges >= lastItemIndex
-      if (nextActiveIndex - edges <= firstItemIndex) {
+      if (nextActiveIndex - edges <= firstItemIndex || !slidesInView.includes(nextActiveIndex)) {
         embla.scrollTo(nextActiveIndex - edges);
       }
 
