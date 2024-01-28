@@ -7,11 +7,7 @@ interface Props {
 }
 
 const Page = ({ params }: Props) => {
-  return (
-    <div>
-      <PokemonListPage dex={params.dex} />
-    </div>
-  );
+  return <PokemonListPage dex={params.dex} />;
 };
 
 export default Page;

@@ -1,4 +1,5 @@
 import { PokemonPage } from '../_components';
+import classes from './page.module.css';
 
 interface Props {
   params: {
@@ -8,9 +9,9 @@ interface Props {
 
 const Page = ({ params }: Props) => {
   return (
-    <>
+    <div className={classes.root}>
       <PokemonPage name={params.name} />
-    </>
+    </div>
   );
 };
 

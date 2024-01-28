@@ -11,14 +11,16 @@ const PageLayout = ({ children }: Props) => {
   return (
     <Layout>
       <Navbar align='center' justify='center'>
-        <Text variant='white' fz={50}>
+        <Text variant='white' fz='var(--fr-fz-lg)'>
           {POKEMON} LIST
         </Text>
       </Navbar>
       <div className='main'>
-        <ReactQuerySuspense queryKey={USE_SELECTED_INDEX_QUERY_KEYS.selections}>
-          {children}
-        </ReactQuerySuspense>
+        <div className='container'>
+          <ReactQuerySuspense queryKey={USE_SELECTED_INDEX_QUERY_KEYS.selections}>
+            {children}
+          </ReactQuerySuspense>
+        </div>
       </div>
       <Navbar align='end' justify='end'>
         <Text variant='white' fz={30}>

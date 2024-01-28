@@ -2,8 +2,11 @@
   position: relative;
   display: grid;
   align-items: flex-end;
-  grid-template-columns: 12% 400px auto;
+  grid-template-columns: 12% 50% 38%;
   margin-left: var(--fr-fz-sm);
+  max-width: 800px;
+  width: 90vw;
+  cursor: pointer;
 
   &[data-active='true'] {
     &::before {
@@ -14,16 +17,16 @@
       margin-bottom: auto;
       left: -1em;
       text-shadow: var(--fr-black-shadow) 2px 0.5px;
-      font-size: var(--fr-fz-xs);
+      font-size: var(--fr-fz-sm);
     }
   }
 }
 
 .index {
-  font-size: var(--fr-fz-xs);
+  font-size: var(--fr-fz-sm);
 }
 
 .name {
-  font-size: var(--fr-fz-sm);
+  font-size: var(--fr-fz-md);
   text-transform: uppercase;
 }

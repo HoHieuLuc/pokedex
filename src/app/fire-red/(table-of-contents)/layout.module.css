@@ -1,5 +1,11 @@
 .title {
-  font-size: 50px;
+  font-size: var(--fr-fz-lg);
+
+  @media screen and (max-width: 768px) {
+    &:first-of-type {
+      display: none;
+    }
+  }
 }
 
 .navbar-wrapper {

@@ -21,8 +21,8 @@ const PokemonList = ({ data, dex, selectedIndexKey }: Props) => {
     key: selectedIndexKey,
   });
 
-  const items = useMemo(() => data.map(() => ({ disabled: false })), [data]);
-  const { setEmbla, selectedIndex } = useItemPicker({
+  const items = useMemo(() => data.map((item) => ({ disabled: false, ...item })), [data]);
+  const { setEmbla, selectedIndex, selectedItem } = useItemPicker({
     items: items || [],
     edges: 3,
     initialIndex: initialIndex,
@@ -33,18 +33,23 @@ const PokemonList = ({ data, dex, selectedIndexKey }: Props) => {
   }, [selectedIndex]);
 
   useGameHotkeys({
-    A: () => navigate.navigate(`/fire-red/pokemon/${data[selectedIndex].slug}`),
+    A: () => navigate.navigate(`/fire-red/pokemon/${selectedItem.slug}`),
   });
 
+  const handleClick = (item: Pokemon, index: number) => {
+    setSelectedIndex(index);
+    navigate.navigate(`/fire-red/pokemon/${item.slug}`);
+  };
+
   const pokemonItems = data.map((pokemon, index) => (
-    <Carousel.Slide key={pokemon.id}>
+    <Carousel.Slide key={pokemon.id} onClick={() => handleClick(pokemon, index)}>
       <PokemonListItem {...pokemon} active={index === selectedIndex} dex={dex} />
     </Carousel.Slide>
   ));
 
   return (
-    <Flex justify='center' py='xs' mx='lg'>
-      <ItemPicker getEmblaApi={setEmbla} miw={800} initialSlide={initialIndex - 3}>
+    <Flex justify='center'>
+      <ItemPicker getEmblaApi={setEmbla} initialSlide={initialIndex - 3}>
         {pokemonItems}
       </ItemPicker>
     </Flex>

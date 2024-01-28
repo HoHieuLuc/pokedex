@@ -1,4 +1,8 @@
 .root {
   display: grid;
   grid-template-columns: 70% 30%;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 100%;
+  }
 }

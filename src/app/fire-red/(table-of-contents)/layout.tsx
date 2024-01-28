@@ -19,9 +19,11 @@ const PageLayout = ({ children }: Props) => {
         </Text>
       </Navbar>
       <div className='main'>
-        <ReactQuerySuspense queryKey={USE_SELECTED_INDEX_QUERY_KEYS.selections}>
-          {children}
-        </ReactQuerySuspense>
+        <div className='container'>
+          <ReactQuerySuspense queryKey={USE_SELECTED_INDEX_QUERY_KEYS.selections}>
+            {children}
+          </ReactQuerySuspense>
+        </div>
       </div>
       <Navbar align='end' justify='end'>
         <Text variant='white' fz={30}>

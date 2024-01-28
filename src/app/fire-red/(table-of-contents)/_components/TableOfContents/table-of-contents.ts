@@ -64,7 +64,7 @@ const tableOfContents: TableOfContent[] = [
   {
     type: 'content',
     title: `CLOSE ${POKEDEX}`,
-    href: '',
+    href: '../',
   },
 ];
 

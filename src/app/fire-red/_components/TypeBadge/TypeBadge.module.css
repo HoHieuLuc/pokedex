@@ -1,9 +1,9 @@
 .root {
-  --_fr-type-badge-width: 3.6em;
-  --_fr-type-badge-height: 1.6em;
+  --_fr-type-badge-width: 3.4em;
+  --_fr-type-badge-height: 1.4em;
   --_fr-type-badge-radius: 0.1em;
   --_fr-type-badge-bg: #adad7b;
-  --_fr-type-badge-fz: var(--fr-fz-xss);
+  --_fr-type-badge-fz: var(--fr-fz-xs);
 
   display: flex;
   justify-content: center;
@@ -22,7 +22,7 @@
   }
 
   :global(.mantine-Text-root) {
-    transform: scaleY(1.3);
+    transform: scale(0.9, 1.1);
   }
 
   &::before,
@@ -106,5 +106,9 @@
 
   &[data-type='water'] {
     --_fr-type-badge-bg: #6b94f7;
+  }
+
+  @media screen and (max-width: 480px) {
+    --_fr-type-badge-height: 1.6em;
   }
 }

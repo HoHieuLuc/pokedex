@@ -14,13 +14,13 @@
 
   background-color: white;
   padding: 1rem 3rem 0;
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
 
   &-text {
     display: flex;
     flex-direction: column;
     justify-content: end;
+    margin-right: 64px;
 
     p {
       font-size: var(--fr-fz-sm);
@@ -48,6 +48,11 @@
       height: calc(var(--fr-fz-md) * 5.5);
     }
   }
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 
 .divider {
@@ -64,6 +69,7 @@
   background: #e7dec6;
   padding: 1rem 0.2rem;
   flex-grow: 1;
+  word-break: break-word;
 
   p {
     font-size: var(--fr-fz-md);
