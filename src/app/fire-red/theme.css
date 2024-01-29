@@ -9,7 +9,7 @@
   --fr-black-shadow: #e7dec6;
 
   /* font sizes */
-  --fr-fz-xss: 30px;
+  --fr-fz-2xs: 30px;
   --fr-fz-xs: 35px;
   --fr-fz-sm: 40px;
   --fr-fz-md: 45px;
@@ -20,7 +20,7 @@
   --fr-item-height: 60px;
 
   @media screen and (max-width: 832px) {
-    --fr-fz-xss: 25px;
+    --fr-fz-2xs: 25px;
     --fr-fz-xs: 30px;
     --fr-fz-sm: 35px;
     --fr-fz-md: 40px;
@@ -28,7 +28,7 @@
   }
 
   @media screen and (max-width: 600px) {
-    --fr-fz-xss: 15px;
+    --fr-fz-2xs: 15px;
     --fr-fz-xs: 20px;
     --fr-fz-sm: 25px;
     --fr-fz-md: 30px;
@@ -38,7 +38,7 @@
   }
 
   @media screen and (max-width: 480px) {
-    --fr-fz-xss: 10px;
+    --fr-fz-2xs: 10px;
     --fr-fz-xs: 15px;
     --fr-fz-sm: 20px;
     --fr-fz-md: 25px;
@@ -72,8 +72,12 @@
 
 .container {
   flex-grow: 1;
-  max-height: 640px;
   max-width: 940px;
   width: 100%;
-  margin: auto;
+  margin: 0 auto;
+
+  .main[data-variant='details'] & {
+    max-height: 640px;
+    margin: auto;
+  }
 }
