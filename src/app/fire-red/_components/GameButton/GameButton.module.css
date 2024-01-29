@@ -1,0 +1,59 @@
+.root {
+  display: flex;
+  align-items: center;
+  font-size: var(--fr-fz-sm);
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.icon {
+  --_radius: 0.1em;
+  --_height: var(--fr-fz-sm);
+  --_width: calc(var(--fr-fz-sm) - var(--_radius) * 2);
+  --_bg: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-transform: uppercase;
+  color: var(--fr-white-shadow);
+  font-size: var(--fr-fz-xs);
+  background: var(--_bg);
+  width: calc(var(--_width));
+  height: var(--_height);
+  margin-left: var(--_radius);
+  margin-right: var(--_radius);
+  box-shadow: var(--fr-white-shadow) 0.05em 0.05em;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: calc(var(--_height) - (var(--_radius) * 2));
+    background: var(--_bg);
+    width: calc(var(--_radius) + 2px);
+    position: absolute;
+  }
+
+  &::before {
+    left: calc(var(--_radius) * -1);
+  }
+
+  &::after {
+    right: calc(var(--_radius) * -1 - 1px);
+    box-shadow: var(--fr-white-shadow) 0.05em 0.05em;
+  }
+}
+
+.icon-pick {
+  image-rendering: pixelated;
+  width: var(--fr-fz-md);
+  height: var(--fr-fz-md);
+}
