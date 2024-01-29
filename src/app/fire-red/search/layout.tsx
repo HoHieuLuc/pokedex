@@ -1,6 +1,7 @@
 import { ReactQuerySuspense } from '@/components';
 import { Layout, Navbar, Text } from '../_components';
 import { USE_SELECTED_INDEX_QUERY_KEYS } from '@/hooks/use-selected-index/use-selected-index';
+import { BottomNav } from '../[dex]/_components';
 
 interface Props {
   children: React.ReactNode;
@@ -20,9 +21,7 @@ const PageLayout = ({ children }: Props) => {
         </ReactQuerySuspense>
       </div>
       <Navbar align='end' justify='end'>
-        <Text variant='white' fz={30}>
-          Button
-        </Text>
+        <BottomNav />
       </Navbar>
     </Layout>
   );

@@ -8,7 +8,6 @@ interface IconProps {
 }
 
 const Icon = ({ label }: IconProps) => {
-
   return <span className={classes.icon}>{label}</span>;
 };
 

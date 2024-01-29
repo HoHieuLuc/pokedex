@@ -1,5 +1,6 @@
 import { POKEMON } from '@/config';
 import { Layout, Navbar, Text } from '../_components';
+import { BottomNav } from './_components';
 
 interface Props {
   children: React.ReactNode;
@@ -17,9 +18,7 @@ const PageLayout = ({ children }: Props) => {
         <div className='container'>{children}</div>
       </div>
       <Navbar align='end' justify='end'>
-        <Text variant='white' fz={30}>
-          Button
-        </Text>
+        <BottomNav />
       </Navbar>
     </Layout>
   );

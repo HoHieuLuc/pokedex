@@ -48,7 +48,7 @@ const PokemonArea = (props: Props) => {
             />
             <Image
               className={classes.sillohete}
-              src='/fire-red-character-sillohete.png'
+              src='/assets/fire-red/character-sillohete.png'
               style={{ '--ratio': heightRatio >= 1 ? 1 : heightRatio }}
             />
           </div>

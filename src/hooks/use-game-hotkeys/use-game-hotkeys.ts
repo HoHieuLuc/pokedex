@@ -37,6 +37,8 @@ const useGameHotkeys = (props: UseGameHotkeysProps) => {
       return [_key, _callback];
     }),
   );
+
+  return hotkeys;
 };
 
 export default useGameHotkeys;
