@@ -40,15 +40,15 @@ const PokemonArea = (props: Props) => {
         </div>
         <div className={classes.size}>
           <Text>Size</Text>
-          <div className={classes['sillohete-wrapper']}>
+          <div className={classes['silhouette-wrapper']}>
             <Image
-              className={classes.sillohete}
+              className={classes.silhouette}
               src={sprite}
               style={{ '--ratio': heightRatio < 1 ? 1 : 1 / heightRatio }}
             />
             <Image
-              className={classes.sillohete}
-              src='/assets/fire-red/character-sillohete.png'
+              className={classes.silhouette}
+              src='/assets/fire-red/character-silhouette.png'
               style={{ '--ratio': heightRatio >= 1 ? 1 : heightRatio }}
             />
           </div>

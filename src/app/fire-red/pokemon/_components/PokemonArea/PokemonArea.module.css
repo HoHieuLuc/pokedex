@@ -52,7 +52,7 @@
   }
 }
 
-.sillohete-wrapper {
+.silhouette-wrapper {
   display: flex;
   align-items: flex-end;
   border: 0.3rem solid #c6b58c;
@@ -61,7 +61,7 @@
   height: calc(var(--fr-fz-md) * 4.8);
 }
 
-.sillohete {
+.silhouette {
   filter: contrast(0) brightness(64%);
   image-rendering: pixelated;
   opacity: 1;
