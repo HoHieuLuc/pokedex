@@ -65,6 +65,10 @@ const useItemPicker = <T extends UseItemPickerItem>({
     };
   }, [embla]);
 
+  const scrollTo = (index: number) => {
+    embla?.scrollTo(index, true);
+  };
+
   const handleArrowUp = useCallback(
     throttle(() => {
       if (!embla || items.length === 0) {
@@ -83,7 +87,7 @@ const useItemPicker = <T extends UseItemPickerItem>({
       const [firstItemIndex] = slidesInView;
       // show the first [edges] items when scrolling up
       if (_selectedIndex - firstItemIndex <= edges || !slidesInView.includes(nextActiveIndex)) {
-        embla.scrollTo(nextActiveIndex - edges);
+        scrollTo(nextActiveIndex - edges);
       }
 
       setSelectedIndex(nextActiveIndex);
@@ -110,7 +114,7 @@ const useItemPicker = <T extends UseItemPickerItem>({
       const lastItemIndex = slidesInView[slidesInView.length - 1];
       // show the last [edges] items when scrolling down
       if (lastItemIndex - _selectedIndex <= edges || !slidesInView.includes(nextActiveIndex)) {
-        embla.scrollTo(nextActiveIndex + edges + 1 - slidesInView.length);
+        scrollTo(nextActiveIndex + edges + 1 - slidesInView.length);
       }
       setSelectedIndex(nextActiveIndex);
     }, throttleDelay),
@@ -133,7 +137,7 @@ const useItemPicker = <T extends UseItemPickerItem>({
       // if the next item can not be found, then pick the last non disabled item
       if (nextActiveIndex === -1) {
         const lastNonDisabledItemIndex = findPreviousNonDisabledItemIndex(items, items.length);
-        embla.scrollTo(items.length - stepsToSkip);
+        scrollTo(items.length - stepsToSkip);
         setSelectedIndex(lastNonDisabledItemIndex);
         return;
       }
@@ -142,7 +146,7 @@ const useItemPicker = <T extends UseItemPickerItem>({
       const lastItemIndex = slidesInView[slidesInView.length - 1];
       // show the last [edges] items when scrolling down
       if (nextActiveIndex + edges >= lastItemIndex || !slidesInView.includes(nextActiveIndex)) {
-        embla.scrollTo(nextActiveIndex + edges + 1 - slidesInView.length);
+        scrollTo(nextActiveIndex + edges + 1 - slidesInView.length);
       }
       setSelectedIndex(nextActiveIndex);
     }, throttleDelay),
@@ -164,7 +168,7 @@ const useItemPicker = <T extends UseItemPickerItem>({
       // if the next item can not be found, then pick the first non disabled item
       if (nextActiveIndex === -1) {
         const firstNonDisabledItemIndex = findNextNonDisabledItemIndex(items, -1);
-        embla.scrollTo(firstNonDisabledItemIndex - edges);
+        scrollTo(firstNonDisabledItemIndex - edges);
         setSelectedIndex(firstNonDisabledItemIndex);
         return;
       }
@@ -173,7 +177,7 @@ const useItemPicker = <T extends UseItemPickerItem>({
       const [firstItemIndex] = slidesInView;
       // show the first [edges] items when scrolling up
       if (nextActiveIndex - edges <= firstItemIndex || !slidesInView.includes(nextActiveIndex)) {
-        embla.scrollTo(nextActiveIndex - edges);
+        scrollTo(nextActiveIndex - edges);
       }
 
       setSelectedIndex(nextActiveIndex);
