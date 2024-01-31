@@ -1,12 +1,9 @@
 import fs from 'fs-extra';
-import { getPath } from '../utils/get-path';
 import datagenService from './datagen.service';
-import toChunks from '../utils/to-chunks';
-import cache from '../utils/cache';
-import { createLogger } from '../utils/logger';
 import { axiosClient } from '@/lib';
 import { ResourceData, ResourceList } from '@/types';
 import { toDictionary } from '@/utils';
+import { createLogger, toChunks, getPath, file, cache, isObjectEmpty } from '../utils';
 
 const logger = createLogger('datagen');
 const limit = 999999;
@@ -79,7 +76,7 @@ const getAllPokemonSpecies = async () => {
 };
 
 const generateData = async () => {
-  const saveDir = getPath('public');
+  const saveDir = getPath('public/data');
 
   await fs.ensureDir(saveDir);
   await fs.ensureDir(cache.CACHE_DIR);
@@ -96,6 +93,7 @@ const generateData = async () => {
     const species = pokemonSpeciesDictionary[pokemon.species.name];
     const speciesName =
       species.names.find((item) => item.language.name === 'en')?.name || species.name;
+
     return {
       id: pokemon.id,
       name: pokemon.name,
@@ -116,12 +114,38 @@ const generateData = async () => {
     };
   });
 
+  const savedPokemonSprites = pokemonDetails.map((pokemon) => {
+    return {
+      id: pokemon.id,
+      sprites: pokemon.sprites,
+    };
+  });
+
   logger.default.log('Writing data...');
-  await fs.writeJSON(`${saveDir}/pokemon.json`, savedPokemonDetails, {
-    spaces: 0,
-    replacer: (_key, value: unknown) => {
+  await file.writeJSON(`${saveDir}/pokemon.json`, savedPokemonDetails);
+
+  const ignoredSpritesKeys = ['other', 'generation-i', 'generation-ii'];
+  await file.writeJSON(`${saveDir}/pokemon.sprites.json`, savedPokemonSprites, {
+    replacer: (key, value: unknown) => {
+      if (
+        key.startsWith('back') ||
+        key.toLowerCase().includes('shiny') ||
+        ignoredSpritesKeys.includes(key)
+      ) {
+        return undefined;
+      }
       if (value === null) {
         return undefined;
+      }
+      if (typeof value === 'object' && isObjectEmpty(value)) {
+        return undefined;
+      }
+      if (typeof value === 'string') {
+        // return value.split('/').pop();
+        return value.replace(
+          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/',
+          '',
+        );
       }
       return value;
     },

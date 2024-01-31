@@ -1,7 +1,6 @@
 import { axiosClient } from '@/lib';
-import cache from '../utils/cache';
-import { createLogger } from '../utils/logger';
 import { PokemonResponse, PokemonSpeciesResponse } from '@/types';
+import { cache, createLogger } from '../utils';
 
 const logger = createLogger('datagen');
 

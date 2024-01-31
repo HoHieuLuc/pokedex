@@ -5,7 +5,7 @@ import { toDictionary } from '@/utils';
 import { POKEMON_TYPES_MAP } from '@/config';
 
 const getAll = async () => {
-  const { data } = await axiosClient.get<Array<Pokemon>>('/pokemon.json', {
+  const { data } = await axiosClient.get<Array<Pokemon>>('/data/pokemon.json', {
     baseURL: '',
   });
   return data;
