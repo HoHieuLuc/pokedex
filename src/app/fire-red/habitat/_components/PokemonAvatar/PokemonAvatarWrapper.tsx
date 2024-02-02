@@ -1,5 +1,5 @@
 import { Box, BoxProps } from '@mantine/core';
-import classes from './PokemonAvatarWrapper.module.css';
+import classes from './PokemonAvatar.module.css';
 
 interface Props extends BoxProps {
   pageLength: number;
@@ -8,7 +8,7 @@ interface Props extends BoxProps {
 
 const PokemonAvatarWrapper = ({ pageLength, children, ...props }: Props) => {
   return (
-    <Box {...props} className={classes.root} data-page-length={pageLength}>
+    <Box {...props} className={classes['root-wrapper']} data-page-length={pageLength}>
       {children}
     </Box>
   );

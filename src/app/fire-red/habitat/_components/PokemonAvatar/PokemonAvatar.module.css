@@ -1,8 +1,83 @@
-.root {
-  --_bg-color: #c6b58c;
+.root-wrapper {
   --_avatar-width: 250px;
   --_avatar-height: 250px;
 
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  max-height: var(--fr-main-height);
+  overflow: auto;
+
+  :where(&[data-page-length='1']) {
+    justify-content: center;
+  }
+
+  :where(&[data-page-length='2']) {
+    justify-content: space-around;
+
+    > :nth-child(2) {
+      margin-top: calc(var(--_avatar-width) / 5 * 4);
+    }
+  }
+
+  :where(&[data-page-length='3']) {
+    justify-content: space-around;
+
+    > :nth-child(2) {
+      margin-top: var(--_avatar-width);
+    }
+
+    > :last-child {
+      margin-top: 2rem;
+    }
+  }
+
+  :where(&[data-page-length='4']) {
+    justify-content: space-around;
+
+    > :nth-child(2),
+    > :nth-child(3) {
+      margin-top: var(--_avatar-width);
+    }
+  }
+
+  @media screen and (max-width: 1016px) {
+    display: grid;
+    > * {
+      margin-top: 0;
+    }
+
+    > :where(:nth-child(odd)) {
+      margin-right: var(--_avatar-width);
+    }
+
+    > :where(:nth-child(even)) {
+      margin-left: var(--_avatar-width);
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    display: flex;
+    justify-content: unset;
+
+    > * {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    > :where(:nth-child(odd)) {
+      margin-right: auto;
+    }
+
+    > :where(:nth-child(even)) {
+      margin-left: auto;
+    }
+  }
+}
+
+.root {
+  --_bg-color: #c6b58c;
   position: relative;
 }
 
@@ -70,12 +145,12 @@
     background-color: white;
 
     :global(.index) {
-      font-size: var(--fr-fz-sm);
+      font-size: 40px;
       margin-left: 1em;
     }
 
     :global(.name) {
-      font-size: var(--fr-fz-md);
+      font-size: 45px;
       text-transform: uppercase;
     }
   }
@@ -93,64 +168,74 @@
     background: #e7dec6;
     border-radius: 0 0 5px 5px;
     color: #7b6339;
-    font-size: var(--fr-fz-xs);
+    font-size: 35px;
     text-shadow: #c6b58c 0.05em 0.05em;
   }
 
-  [data-page-length='1'] & {
+  &[data-position] {
+    position: absolute;
+  }
+
+  :where([data-page-length='1']) & {
     &[data-position='1'] {
-      position: absolute;
       top: var(--_avatar-height);
       left: calc((var(--_width) - var(--_avatar-width)) / 2 * -1);
     }
   }
 
-  [data-page-length='2'] &,
-  [data-page-length='3'] & {
+  :where([data-page-length='2'], [data-page-length='3']) & {
     &[data-position='1'] {
-      position: absolute;
       top: 0;
       left: calc(var(--_avatar-width));
     }
 
     &[data-position='2'] {
-      position: absolute;
-      bottom: calc(var(--_avatar-height) / 10);
+      top: calc(var(--_avatar-height) / 5);
       right: calc(var(--_avatar-width));
     }
   }
 
-  [data-page-length='3'] & {
+  :where([data-page-length='3']) & {
     &[data-position='3'] {
-      position: absolute;
       top: var(--_avatar-height);
       left: 0;
     }
   }
 
-  [data-page-length='4'] & {
+  :where([data-page-length='4']) & {
     &[data-position='1'] {
-      position: absolute;
       top: calc(var(--_avatar-height) / 10);
       left: calc(var(--_avatar-width) / 4 * 3);
     }
 
     &[data-position='2'] {
-      position: absolute;
-      bottom: calc(var(--_avatar-height) / 10);
-      right: calc(var(--_avatar-width) / 10 * 9);
+      top: calc(var(--_avatar-height) / 5);
+      left: calc(var(--_avatar-width) / -1);
     }
 
     &[data-position='3'] {
-      position: absolute;
       top: calc(var(--_avatar-height) / 10);
       left: calc(var(--_avatar-width) / 7 * 6);
     }
 
     &[data-position='4'] {
-      position: absolute;
       top: calc(var(--_avatar-height) / 5);
-      right: calc(var(--_avatar-width) / 10 * 9);
+      left: calc(var(--_avatar-width) / -1);
+    }
+  }
+
+  @media screen and (max-width: 1016px) {
+    :where([data-page-length='3']) & {
+      &[data-position='3'] {
+        top: calc(var(--_avatar-height) / 5);
+        left: calc(var(--_avatar-width));
+      }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    &[data-position] {
+      position: unset;
     }
   }
 }

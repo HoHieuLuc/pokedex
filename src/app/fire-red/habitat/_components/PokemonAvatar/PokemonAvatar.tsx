@@ -5,7 +5,7 @@ import PokemonAvatarWrapper from './PokemonAvatarWrapper';
 
 interface Props {
   position: number;
-  active: boolean;
+  active?: boolean;
   sprites: string;
   index: number;
   name: string;
