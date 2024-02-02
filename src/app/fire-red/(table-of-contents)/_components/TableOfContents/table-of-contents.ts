@@ -1,4 +1,4 @@
-import { POKEDEX, POKEMON } from '@/config';
+import { POKEDEX, POKEMON, POKEMON_HABITATS } from '@/config';
 
 export interface TableOfContent {
   type: 'heading' | 'content';
@@ -6,21 +6,13 @@ export interface TableOfContent {
   href: string;
 }
 
-const habitats = [
-  'Glassland',
-  'Forest',
-  `Water's-edge`,
-  'Sea',
-  'Cave',
-  'Mountain',
-  'Rough-terrain',
-  'Urban',
-  'Rare',
-].map<TableOfContent>((habitat) => ({
-  type: 'content',
-  title: `${habitat} ${POKEMON}`,
-  href: '',
-}));
+const habitats = Object.entries(POKEMON_HABITATS).map<TableOfContent>(([key, value]) => {
+  return {
+    type: 'content',
+    title: `${value} ${POKEMON}`,
+    href: `habitat/${key}`,
+  };
+});
 
 const searchModes = ['A TO Z', 'TYPE', 'LIGHTEST', 'SMALLEST'].map<TableOfContent>((mode) => ({
   type: 'content',

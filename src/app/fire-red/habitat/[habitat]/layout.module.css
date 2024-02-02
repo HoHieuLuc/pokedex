@@ -1,0 +1,6 @@
+.container {
+  max-width: unset !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

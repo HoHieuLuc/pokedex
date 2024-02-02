@@ -1,5 +1,4 @@
-.main {
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
+.container {
+  max-height: 640px;
+  margin: auto;
 }

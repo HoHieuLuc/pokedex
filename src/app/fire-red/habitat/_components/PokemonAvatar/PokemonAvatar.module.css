@@ -43,6 +43,7 @@
 
   @media screen and (max-width: 1016px) {
     display: grid;
+
     > * {
       margin-top: 0;
     }
@@ -85,12 +86,15 @@
   0% {
     --_bg-color: #ff8d68;
   }
+
   25% {
     --_bg-color: #ee9b79;
   }
+
   50% {
     --_bg-color: #daa778;
   }
+
   75% {
     --_bg-color: #ee9b79;
   }

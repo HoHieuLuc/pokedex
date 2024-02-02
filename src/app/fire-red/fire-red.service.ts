@@ -1,4 +1,4 @@
-import { PokemonTypeData, pokemonService } from '@/pokemon';
+import { Pokemon, PokemonTypeData, pokemonService } from '@/pokemon';
 import { FireRedDex } from './fire-red.type';
 import { POKEDEX_RANGES } from '@/config';
 
@@ -20,7 +20,7 @@ const getDex = async (dex: FireRedDex) => {
     .sort((a, b) => {
       return a.species.pokedexNumbers[dex] - b.species.pokedexNumbers[dex];
     })
-    .map((pokemon) => {
+    .map<Pokemon>((pokemon) => {
       const typesExcludingFairy = pokemon.types.filter((type) => type.type.name !== 'fairy');
 
       return {

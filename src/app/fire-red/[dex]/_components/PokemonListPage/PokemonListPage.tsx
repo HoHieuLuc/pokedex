@@ -14,7 +14,7 @@ const PokemonListPage = ({ dex }: Props) => {
   const { data, isLoading } = fireRedHook.useDex(dex);
 
   useGameHotkeys({
-    B: () => router.push('.'),
+    B: () => router.push('/fire-red'),
   });
 
   if (isLoading || !data) {

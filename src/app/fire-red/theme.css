@@ -53,6 +53,7 @@
   display: flex;
   flex-direction: column;
   font-size: var(--fr-fz-md);
+  overflow: hidden;
 }
 
 .main {
@@ -75,9 +76,4 @@
   max-width: 940px;
   width: 100%;
   margin: 0 auto;
-
-  .main[data-variant='details'] & {
-    max-height: 640px;
-    margin: auto;
-  }
 }

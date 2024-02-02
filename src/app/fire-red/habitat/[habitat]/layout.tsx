@@ -1,26 +1,29 @@
-import { POKEMON } from '@/config';
-import { Layout, Navbar, Text } from '../_components';
-import { BottomNav } from './_components';
+import { PokemonHabitat } from '@/pokemon';
+import { Layout, Navbar, Text } from '../../_components';
+import { POKEMON_HABITATS, POKEMON } from '@/config';
 import classes from './layout.module.css';
 import clsx from 'clsx';
 
 interface Props {
   children: React.ReactNode;
+  params: {
+    habitat: PokemonHabitat;
+  };
 }
 
-const PageLayout = ({ children }: Props) => {
+const PageLayout = ({ children, params }: Props) => {
   return (
     <Layout>
       <Navbar align='center' justify='center'>
         <Text variant='white' fz='var(--fr-fz-lg)'>
-          {POKEMON} LIST
+          {POKEMON_HABITATS[params.habitat]} {POKEMON}
         </Text>
       </Navbar>
       <div className='main' data-variant='details'>
         <div className={clsx('container', classes.container)}>{children}</div>
       </div>
       <Navbar align='end' justify='end'>
-        <BottomNav />
+        A
       </Navbar>
     </Layout>
   );
