@@ -5,7 +5,7 @@ import classes from './PokemonListItem.module.css';
 import { Text } from '@/app/fire-red/_components';
 import { FireRedDex } from '@/app/fire-red';
 
-interface Props extends Pokemon {
+interface Props extends Omit<Pokemon, 'sprites'> {
   active: boolean;
   dex: FireRedDex;
 }

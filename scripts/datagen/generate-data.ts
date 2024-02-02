@@ -141,7 +141,6 @@ const generateData = async () => {
         return undefined;
       }
       if (typeof value === 'string') {
-        // return value.split('/').pop();
         return value.replace(
           'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/',
           '',

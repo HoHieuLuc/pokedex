@@ -1,4 +1,4 @@
-import { PokemonResponse, PokemonSpeciesResponse } from '@/types';
+import { PokemonResponse, PokemonSpeciesResponse, PokemonSprites } from '@/types';
 import { Pokedex, Pokemon, PokemonDetails, PokemonType } from './pokemon.type';
 import { axiosClient } from '@/lib';
 import { toDictionary } from '@/utils';
@@ -8,7 +8,27 @@ const getAll = async () => {
   const { data } = await axiosClient.get<Array<Pokemon>>('/data/pokemon.json', {
     baseURL: '',
   });
-  return data;
+  const sprites = await getAllSprites();
+
+  return data.map<Pokemon>((pokemon) => ({
+    ...pokemon,
+    sprites: sprites[pokemon.id],
+  }));
+};
+
+const getAllSprites = async () => {
+  const { data } = await axiosClient.get<Array<{ id: number; sprites: PokemonSprites }>>(
+    '/data/pokemon.sprites.json',
+    {
+      baseURL: '',
+    },
+  );
+
+  return toDictionary({
+    data,
+    key: (item) => item.id.toString(),
+    value: (item) => item.sprites,
+  });
 };
 
 const getEnglishResource = (data: { language: { name: string } }) => {
@@ -137,4 +157,5 @@ export default {
   getAll,
   getByName,
   getSortedPokemons,
+  getAllSprites,
 };

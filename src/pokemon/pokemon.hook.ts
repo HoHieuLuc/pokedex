@@ -5,12 +5,20 @@ import { useMemo } from 'react';
 const QUERY_KEYS = {
   list: ['pokemon', 'list'],
   details: (name: string) => ['pokemon', 'details', name],
+  sprites: ['pokemon', 'sprites'],
 };
 
 const useAll = () => {
   return useQuery({
     queryKey: QUERY_KEYS.list,
     queryFn: pokemonService.getAll,
+  });
+};
+
+const useAllSprites = () => {
+  return useQuery({
+    queryKey: QUERY_KEYS.sprites,
+    queryFn: pokemonService.getAllSprites,
   });
 };
 
@@ -53,5 +61,6 @@ export default {
   useAll,
   useByName,
   useNextAndPrevious,
+  useAllSprites,
   QUERY_KEYS,
 };

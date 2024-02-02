@@ -3,7 +3,7 @@ import PokemonListItem from './PokemonListItem';
 
 export default { title: 'Fire Red/PokemonListItem' };
 
-const pokemon: Pokemon = {
+const pokemon: Omit<Pokemon, 'sprites'> = {
   id: 1,
   height: 1,
   name: 'butterfree',

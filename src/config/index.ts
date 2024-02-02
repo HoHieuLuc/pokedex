@@ -1,9 +1,12 @@
-import { PokemonType } from '@/pokemon';
+import { PokemonHabitat, PokemonType } from '@/pokemon';
 
 /** The word "POKéMON" */
 export const POKEMON = 'POKéMON';
 /** The word "POKéDEX" */
 export const POKEDEX = 'POKéDEX';
+
+export const BASE_SPRITES_URL =
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
 
 export const POKEMON_TYPES: Array<PokemonType> = [
   'normal',
@@ -44,3 +47,15 @@ export const POKEMON_TYPES_MAP: Record<PokemonType, number> = POKEMON_TYPES.redu
   },
   {} as Record<PokemonType, number>,
 );
+
+export const POKEMON_HABITATS: Record<PokemonHabitat, string> = {
+  grassland: 'Grassland',
+  forest: 'Forest',
+  'waters-edge': `Water's edge`,
+  sea: 'sea',
+  cave: 'Cave',
+  mountain: 'Mountain',
+  'rough-terrain': 'Rough-terrain',
+  urban: 'Urban',
+  rare: 'Rare',
+};

@@ -1,4 +1,4 @@
-import { Sprites } from '@/types';
+import { PokemonSprites } from '@/types';
 
 export interface Pokemon {
   id: number;
@@ -6,6 +6,7 @@ export interface Pokemon {
   slug: string;
   types: PokemonTypeData[];
   species: PokemonSpecies;
+  sprites: PokemonSprites;
   order: number;
   height: number;
   weight: number;
@@ -100,5 +101,5 @@ export interface PokemonDetails {
   name: string;
   height: number;
   weight: number;
-  sprites: Sprites;
+  sprites: PokemonSprites;
 }

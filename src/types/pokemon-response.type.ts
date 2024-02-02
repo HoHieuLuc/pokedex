@@ -16,7 +16,7 @@ export interface PokemonResponse {
   // pastAbilities: any[];
   // pastTypes: any[];
   species: Species;
-  sprites: Sprites;
+  sprites: PokemonSprites;
   stats: Stat[];
   types: Type[];
   weight: number;
@@ -77,7 +77,7 @@ type VersionGroupName =
   | 'colosseum'
   | 'xd';
 
-export interface Sprites {
+export interface PokemonSprites {
   backDefault: string;
   backFemale?: string;
   backShiny: string;
@@ -114,7 +114,7 @@ interface SpritesOfficialArtwork {
   frontShiny: string;
 }
 
-type SpritesShowdown = Omit<Sprites, 'other' | 'versions'>;
+type SpritesShowdown = Omit<PokemonSprites, 'other' | 'versions'>;
 
 interface SpritesVersions {
   'generation-i'?: SpritesGenerationI;
