@@ -52,7 +52,7 @@ export const POKEMON_HABITATS: Record<PokemonHabitat, string> = {
   grassland: 'Grassland',
   forest: 'Forest',
   'waters-edge': `Water's edge`,
-  sea: 'sea',
+  sea: 'Sea',
   cave: 'Cave',
   mountain: 'Mountain',
   'rough-terrain': 'Rough-terrain',

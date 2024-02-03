@@ -3,7 +3,7 @@
 import fireRedHook from '@/app/fire-red/fire-red.hook';
 import { PokemonHabitat } from '@/pokemon';
 import { useCallback, useMemo, useState } from 'react';
-import { habitats } from './habitats';
+import { habitats } from '../../[habitat]/habitats';
 import { throttle, toDictionary } from '@/utils';
 import { Carousel, CarouselSlide, Embla } from '@mantine/carousel';
 import PokemonAvatar from '../PokemonAvatar/PokemonAvatar';
@@ -11,6 +11,7 @@ import { BASE_SPRITES_URL } from '@/config';
 import { PokemonSprites } from '@/types';
 import { useGameHotkeys, useStateRef } from '@/hooks';
 import { useRouter } from 'next/navigation';
+import classes from './PokemonHabitatPage.module.css';
 
 interface Props {
   habitat: PokemonHabitat;
@@ -35,11 +36,14 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
   const [activeIndex, setActiveIndex, activeIndexRef] = useStateRef(0);
   const [embla, setEmbla] = useState<Embla | null>(null);
 
+  const currentHabitats = habitats[habitat];
+
   const handleArrowLeft = useCallback(
     throttle(() => {
       const _page = pageRef.current;
       const _activeIndex = activeIndexRef.current;
       if (_page === 0 && _activeIndex === 0) {
+        router.push('/fire-red');
         return;
       }
       if (_activeIndex === 0) {
@@ -56,12 +60,13 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
       const _page = pageRef.current;
       const _activeIndex = activeIndexRef.current;
       if (
-        _page === habitats.grassland.length &&
-        _activeIndex === habitats.grassland[_page].length - 1
+        _page === currentHabitats.length - 1 &&
+        _activeIndex === currentHabitats[_page].length - 1
       ) {
+        router.push('/fire-red');
         return;
       }
-      if (_activeIndex === habitats.grassland[_page].length - 1) {
+      if (_activeIndex === currentHabitats[_page].length - 1) {
         embla?.scrollNext();
       } else {
         setActiveIndex(_activeIndex + 1);
@@ -78,7 +83,7 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
     }
     if (index < _page) {
       setPage(_page - 1);
-      setActiveIndex(habitats.grassland[index].length - 1);
+      setActiveIndex(currentHabitats[index].length - 1);
     }
   };
 
@@ -94,7 +99,7 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
     }
     return toDictionary({
       data: data.filter((pokemon) => pokemon.species.habitat === habitat),
-      key: (item) => item.id.toString(),
+      key: (item) => item.species.pokedexNumbers['national'].toString(),
       value: (item) => item,
     });
   }, [data]);
@@ -103,7 +108,7 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
     return <></>;
   }
 
-  const slides = habitats.grassland.map((ids, index) => (
+  const slides = currentHabitats.map((ids, index) => (
     <CarouselSlide key={index}>
       <PokemonAvatar.Wrapper pageLength={ids.length}>
         {ids.map((id, _index) => (
@@ -122,10 +127,13 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
 
   return (
     <Carousel
-      withControls={false}
       withKeyboardEvents={false}
       getEmblaApi={setEmbla}
       onSlideChange={onSlideChange}
+      classNames={{
+        controls: classes.controls,
+        control: classes.control,
+      }}
     >
       {slides}
     </Carousel>
