@@ -1,0 +1,21 @@
+.root {
+  padding: 0 var(--fr-fz-md);
+
+  @media screen and (max-width: 672px) {
+    padding: 0 8px;
+  }
+
+  @media screen and (max-width: 336px) {
+    padding: 0;
+  }
+}
+
+.page {
+  text-transform: uppercase;
+
+  @media screen and (max-width: 416px) {
+    > span {
+      display: none;
+    }
+  }
+}

@@ -4,13 +4,12 @@ import fireRedHook from '@/app/fire-red/fire-red.hook';
 import { PokemonHabitat } from '@/pokemon';
 import { useCallback, useMemo, useState } from 'react';
 import { habitats } from '../../[habitat]/habitats';
-import { throttle, toDictionary } from '@/utils';
+import { parseNumber, throttle, toDictionary } from '@/utils';
 import { Carousel, CarouselSlide, Embla } from '@mantine/carousel';
 import PokemonAvatar from '../PokemonAvatar/PokemonAvatar';
 import { BASE_SPRITES_URL } from '@/config';
 import { PokemonSprites } from '@/types';
-import { useGameHotkeys, useStateRef } from '@/hooks';
-import { useRouter } from 'next/navigation';
+import { useGameHotkeys, useNavigate, useStateRef } from '@/hooks';
 import classes from './PokemonHabitatPage.module.css';
 
 interface Props {
@@ -29,21 +28,44 @@ const getSpriteUrl = (sprites: PokemonSprites) => {
 const THROTTLE_DELAY = 100;
 
 const PokemonHabitatPage = ({ habitat }: Props) => {
-  const router = useRouter();
+  const currentHabitats = habitats[habitat];
+
+  const navigate = useNavigate({ defaultValue: '/fire-red' });
+
+  const initialPage = useMemo(() => {
+    const _page = parseNumber(navigate.searchParams.get('page'));
+    if (_page < 1) {
+      return 1;
+    }
+    if (_page >= currentHabitats.length) {
+      return currentHabitats.length;
+    }
+    return _page;
+  }, []);
+
+  const [page, _setPage, pageRef] = useStateRef(initialPage - 1);
+  const [activeIndex, setActiveIndex, activeIndexRef] = useStateRef(0);
 
   const { data } = fireRedHook.useDex('national');
-  const [page, setPage, pageRef] = useStateRef(0);
-  const [activeIndex, setActiveIndex, activeIndexRef] = useStateRef(0);
   const [embla, setEmbla] = useState<Embla | null>(null);
 
-  const currentHabitats = habitats[habitat];
+  const pokemons = useMemo(() => {
+    if (!data) {
+      return null;
+    }
+    return toDictionary({
+      data: data.filter((pokemon) => pokemon.species.habitat === habitat),
+      key: (item) => item.species.pokedexNumbers['national'].toString(),
+      value: (item) => item,
+    });
+  }, [data]);
 
   const handleArrowLeft = useCallback(
     throttle(() => {
       const _page = pageRef.current;
       const _activeIndex = activeIndexRef.current;
       if (_page === 0 && _activeIndex === 0) {
-        router.push('/fire-red');
+        navigate.push('/fire-red');
         return;
       }
       if (_activeIndex === 0) {
@@ -63,7 +85,7 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
         _page === currentHabitats.length - 1 &&
         _activeIndex === currentHabitats[_page].length - 1
       ) {
-        router.push('/fire-red');
+        navigate.push('/fire-red');
         return;
       }
       if (_activeIndex === currentHabitats[_page].length - 1) {
@@ -74,6 +96,11 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
     }, THROTTLE_DELAY),
     [embla],
   );
+
+  const setPage = (value: number) => {
+    _setPage(value);
+    navigate.push(`${navigate.path}?page=${value + 1}`);
+  };
 
   const onSlideChange = (index: number) => {
     const _page = pageRef.current;
@@ -90,19 +117,8 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
   useGameHotkeys({
     ArrowLeft: handleArrowLeft,
     ArrowRight: handleArrowRight,
-    B: () => router.push('/fire-red'),
+    B: () => navigate.push('/fire-red'),
   });
-
-  const pokemons = useMemo(() => {
-    if (!data) {
-      return null;
-    }
-    return toDictionary({
-      data: data.filter((pokemon) => pokemon.species.habitat === habitat),
-      key: (item) => item.species.pokedexNumbers['national'].toString(),
-      value: (item) => item,
-    });
-  }, [data]);
 
   if (!pokemons) {
     return <></>;
@@ -130,6 +146,7 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
       withKeyboardEvents={false}
       getEmblaApi={setEmbla}
       onSlideChange={onSlideChange}
+      initialSlide={initialPage - 1}
       classNames={{
         controls: classes.controls,
         control: classes.control,

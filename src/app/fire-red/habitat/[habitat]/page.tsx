@@ -11,7 +11,7 @@ interface Props {
 const Page = ({ params }: Props) => {
   return (
     <>
-      <PokemonHabitatPage habitat={params.habitat} />
+      <PokemonHabitatPage key={params.habitat} habitat={params.habitat} />
     </>
   );
 };
