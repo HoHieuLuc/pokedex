@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import pokemonService from './pokemon.service';
 import { useMemo } from 'react';
+import { PokemonDetails } from './pokemon.type';
 
 const QUERY_KEYS = {
   list: ['pokemon', 'list'],
@@ -41,9 +42,21 @@ const useNextAndPrevious = (id?: number) => {
 };
 
 const useByName = (name: string) => {
+  const { data: pokemons } = useAll();
+  const placeholder = pokemons?.find((pokemon) => pokemon.slug === name);
+  const placeholderData: PokemonDetails | undefined = placeholder && {
+    ...placeholder,
+    genus: '??? Pokémon',
+    pokedexNumbers: placeholder.species.pokedexNumbers,
+    name: placeholder.species.name,
+    flavorTexts: {},
+    types: [],
+  };
+
   const { data, ...query } = useQuery({
     queryKey: QUERY_KEYS.details(name),
     queryFn: () => pokemonService.getByName(name),
+    placeholderData,
   });
   const { next, previous } = useNextAndPrevious(data?.id);
 
