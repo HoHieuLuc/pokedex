@@ -1,5 +1,5 @@
 import { Text } from '@/app/fire-red/_components';
-import { Image } from '@mantine/core';
+import { SpriteImage } from '@/components';
 import classes from './PokemonCard.module.css';
 
 interface Props {
@@ -43,12 +43,12 @@ const PokemonCard = (props: Props) => {
           </div>
         </div>
         <div className={classes['general-info-sprite']}>
-          <Image className='sprite' src={sprite} />
+          <SpriteImage className='sprite' src={sprite} />
         </div>
       </div>
       <div className={classes.divider}></div>
       <div className={classes.description}>
-        <Text>{flavorText}</Text>
+        <Text>{flavorText || 'ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᚲ ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᛏ ᛏᚨᛏ ᛒᚱᚨ ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᚲ ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᛏ ᛏᚨᛏ ᛒᚱᚨ'}</Text>
       </div>
     </div>
   );

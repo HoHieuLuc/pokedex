@@ -2,6 +2,7 @@ import { Flex, Image } from '@mantine/core';
 import classes from './PokemonArea.module.css';
 import { Text, TypeBadge } from '@/app/fire-red/_components';
 import { PokemonType } from '@/pokemon';
+import { SpriteImage } from '@/components';
 
 interface Props {
   index: number;
@@ -25,7 +26,7 @@ const PokemonArea = (props: Props) => {
       <div className={classes['info-wrapper']}>
         <div className={classes.info}>
           <div>
-            <Image className={classes.icon} src={icon} />
+            <SpriteImage className={classes.icon} src={icon} />
           </div>
           <div>
             <Text className={classes.index}>No{index.toString().padStart(3, '0')}</Text>
@@ -41,7 +42,7 @@ const PokemonArea = (props: Props) => {
         <div className={classes.size}>
           <Text>Size</Text>
           <div className={classes['silhouette-wrapper']}>
-            <Image
+            <SpriteImage
               className={classes.silhouette}
               src={sprite}
               style={{ '--ratio': heightRatio < 1 ? 1 : 1 / heightRatio }}
