@@ -1,0 +1,8 @@
+.root {
+  max-width: 940px;
+  max-height: 640px;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  padding: 8px 0;
+}
