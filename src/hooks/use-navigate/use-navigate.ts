@@ -1,12 +1,16 @@
 import { useSessionStorage } from '@mantine/hooks';
-import { NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 interface Props {
   defaultValue: string;
 }
 
-const useNavigate = ({ defaultValue }: Props) => {
+interface NavigateOptions {
+  scroll?: boolean;
+  query?: Record<string, string | number | undefined>;
+}
+
+const useNavigate = ({ defaultValue }: Props = { defaultValue: '/' }) => {
   const router = useRouter();
   const path = usePathname();
   const searchParams = useSearchParams();
@@ -33,10 +37,28 @@ const useNavigate = ({ defaultValue }: Props) => {
   };
 
   const push = (href: string, options?: NavigateOptions) => {
+    if (options?.query) {
+      const _searchParams = new URLSearchParams(searchParams);
+      Object.entries(options.query).forEach(([key, value]) => {
+        if (value === undefined) {
+          _searchParams.delete(key);
+        } else {
+          _searchParams.set(key, value.toString());
+        }
+      });
+
+      return router.push(`${href}?${_searchParams.toString()}`, options);
+    }
     router.push(href, options);
   };
 
-  return { previousUrl, navigate, back, push, path, searchParams };
+  const setSearchParams = (params: NavigateOptions['query']) => {
+    push(path, {
+      query: params,
+    });
+  };
+
+  return { previousUrl, path, searchParams, navigate, back, push, setSearchParams };
 };
 
 export default useNavigate;

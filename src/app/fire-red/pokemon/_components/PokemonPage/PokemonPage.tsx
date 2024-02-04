@@ -61,12 +61,16 @@ const PokemonPage = ({ name }: Props) => {
       if (tab === 'area') {
         navigate.back();
       } else {
-        navigate.push(`${navigate.path}?tab=area`);
+        navigate.setSearchParams({
+          tab: 'area',
+        });
       }
     },
     B: () => {
       if (tab === 'area') {
-        navigate.push(navigate.path);
+        navigate.setSearchParams({
+          tab: undefined,
+        });
       } else {
         navigate.back();
       }
@@ -86,13 +90,13 @@ const PokemonPage = ({ name }: Props) => {
           {...data}
           index={data.pokedexNumbers['national']}
           sprite={
-            data.sprites.versions['generation-iii']?.['firered-leafgreen'].frontDefault ||
-            data.sprites.versions['generation-iii']?.['emerald'].frontDefault ||
+            data.sprites.versions['generation-iii']?.['firered-leafgreen']?.frontDefault ||
+            data.sprites.versions['generation-iii']?.['emerald']?.frontDefault ||
             data.sprites.frontDefault
           }
           icon={
-            data.sprites.versions['generation-vii']?.['icons'].frontDefault ||
-            data.sprites.versions['generation-viii']?.['icons'].frontDefault ||
+            data.sprites.versions['generation-vii']?.['icons']?.frontDefault ||
+            data.sprites.versions['generation-viii']?.['icons']?.frontDefault ||
             data.sprites.frontDefault
           }
         />
@@ -102,8 +106,8 @@ const PokemonPage = ({ name }: Props) => {
           index={data.pokedexNumbers['national']}
           flavorText={data.flavorTexts['firered']}
           sprite={
-            data.sprites.versions['generation-iii']?.['firered-leafgreen'].frontDefault ||
-            data.sprites.versions['generation-iii']?.['emerald'].frontDefault ||
+            data.sprites.versions['generation-iii']?.['firered-leafgreen']?.frontDefault ||
+            data.sprites.versions['generation-iii']?.['emerald']?.frontDefault ||
             data.sprites.frontDefault
           }
         />
