@@ -1,6 +1,7 @@
 import { Carousel, CarouselProps } from '@mantine/carousel';
+import classes from './ItemPicker.module.css';
 
-const ItemPicker = (props: CarouselProps) => {
+const ItemPicker = ({ classNames, ...props }: CarouselProps) => {
   return (
     <Carousel
       orientation='vertical'
@@ -9,10 +10,14 @@ const ItemPicker = (props: CarouselProps) => {
       align='start'
       slideSize='var(--fr-item-height)'
       withKeyboardEvents={false}
-      withControls={false}
       speed={Infinity}
       dragFree
       {...props}
+      classNames={{
+        ...classNames,
+        control: classes.control,
+        controls: classes.controls,
+      }}
     />
   );
 };

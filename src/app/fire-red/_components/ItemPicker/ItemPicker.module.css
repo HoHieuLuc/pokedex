@@ -1,0 +1,35 @@
+@keyframes controls {
+  50% {
+    padding: 24px 0;
+  }
+}
+
+.controls {
+  padding: 0;
+  right: 0;
+  animation: controls 0.5s infinite;
+}
+
+.control {
+  background: url('/assets/fire-red/icon-arrow.png') center no-repeat;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  height: 60px;
+  width: 60px;
+  cursor: default;
+  pointer-events: none;
+  transform: rotate(90deg);
+
+  svg {
+    opacity: 0;
+  }
+
+  &[data-inactive] {
+    opacity: 0;
+  }
+
+  &:last-of-type {
+    transform: rotate(-90deg);
+  }
+}
