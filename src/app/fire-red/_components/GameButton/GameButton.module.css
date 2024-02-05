@@ -1,7 +1,7 @@
 .root {
   display: flex;
   align-items: center;
-  font-size: var(--fr-fz-sm);
+  font-size: 40px;
   text-transform: uppercase;
   background: none;
   border: none;
@@ -10,12 +10,18 @@
   &:focus {
     outline: none;
   }
+
+  @media screen and (max-width: 840px) {
+    :global(.label) {
+      display: none;
+    }
+  }
 }
 
 .icon {
   --_radius: 0.1em;
-  --_height: var(--fr-fz-sm);
-  --_width: calc(var(--fr-fz-sm) - var(--_radius) * 2);
+  --_height: 40px;
+  --_width: calc(40px - var(--_radius) * 2);
   --_bg: white;
 
   display: flex;
@@ -24,7 +30,7 @@
   position: relative;
   text-transform: uppercase;
   color: var(--fr-white-shadow);
-  font-size: var(--fr-fz-xs);
+  font-size: 35px;
   background: var(--_bg);
   width: calc(var(--_width));
   height: var(--_height);
@@ -54,6 +60,6 @@
 
 .icon-pick {
   image-rendering: pixelated;
-  width: var(--fr-fz-md);
-  height: var(--fr-fz-md);
+  width: 45px;
+  height: 45px;
 }

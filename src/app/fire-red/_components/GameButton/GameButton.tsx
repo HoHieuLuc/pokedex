@@ -17,6 +17,12 @@ const IconPick = () => {
   );
 };
 
+const IconPickFlip = () => {
+  return (
+    <Image src='/assets/fire-red/icon-pick-flip.png' alt='icon pick' className={classes['icon-pick']} />
+  );
+};
+
 interface GameButtonProps
   extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   label: string;
@@ -27,7 +33,7 @@ const GameButton = ({ label, icon, ...props }: GameButtonProps) => {
   return (
     <button className={classes.root} {...props}>
       {icon}
-      <Text variant='white' fz='var(--fr-fz-md)'>
+      <Text className='label' variant='white' fz={45}>
         {label}
       </Text>
     </button>
@@ -36,5 +42,6 @@ const GameButton = ({ label, icon, ...props }: GameButtonProps) => {
 
 GameButton.Icon = Icon;
 GameButton.IconPick = IconPick;
+GameButton.IconPickFlip = IconPickFlip;
 
 export default GameButton;
