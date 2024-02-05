@@ -5,7 +5,7 @@ import { triggerGameHotkey, useGameHotkeys } from '@/hooks';
 import { Flex } from '@mantine/core';
 import { useSearchParams } from 'next/navigation';
 
-const BottomNav = () => {
+export const BottomNav = () => {
   const searchParams = useSearchParams();
   const tab = searchParams.get('tab');
   const hotkeys = useGameHotkeys({});
@@ -36,4 +36,6 @@ const BottomNav = () => {
   );
 };
 
-export default BottomNav;
+export const BottomNavFallback = () => {
+  return <Navbar align='center' justify='space-between'></Navbar>;
+};

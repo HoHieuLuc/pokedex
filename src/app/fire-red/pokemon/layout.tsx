@@ -1,8 +1,9 @@
 import { POKEMON } from '@/config';
 import { Layout, Navbar, Text } from '../_components';
-import { BottomNav } from './_components';
+import { BottomNav, BottomNavFallback } from './_components';
 import classes from './layout.module.css';
 import clsx from 'clsx';
+import { Suspense } from 'react';
 
 interface Props {
   children: React.ReactNode;
@@ -19,7 +20,9 @@ const PageLayout = ({ children }: Props) => {
       <div className='main' data-variant='details'>
         <div className={clsx('container', classes.container)}>{children}</div>
       </div>
-      <BottomNav />
+      <Suspense fallback={<BottomNavFallback />}>
+        <BottomNav />
+      </Suspense>
     </Layout>
   );
 };
