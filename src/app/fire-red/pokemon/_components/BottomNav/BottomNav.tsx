@@ -10,16 +10,18 @@ const BottomNav = () => {
   const hotkeys = useGameHotkeys({});
 
   return (
-    <Navbar align='end' justify='end'>
+    <Navbar align='center' justify='flex-end'>
       <GameButton
         label={tab === 'area' ? 'cancel' : 'next data'}
-        icon={<GameButton.Icon label={hotkeys.A} />}
+        icon={<GameButton.Icon label='A' />}
         onClick={() => triggerGameHotkey({ key: hotkeys.A })}
+        title={`Press ${hotkeys.A} button`}
       />
       <GameButton
         label={tab === 'area' ? 'previous data' : 'cancel'}
-        icon={<GameButton.Icon label={hotkeys.B} />}
+        icon={<GameButton.Icon label='B' />}
         onClick={() => triggerGameHotkey({ key: hotkeys.B })}
+        title={`Press ${hotkeys.B} button`}
       />
     </Navbar>
   );

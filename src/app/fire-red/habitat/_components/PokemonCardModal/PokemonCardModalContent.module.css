@@ -1,8 +1,9 @@
 .root {
-  max-width: 940px;
+  display: flex;
+  flex-direction: column;
   max-height: 640px;
-  margin: auto;
   height: 100%;
   width: 100%;
   padding: 8px 0;
+  margin: auto;
 }

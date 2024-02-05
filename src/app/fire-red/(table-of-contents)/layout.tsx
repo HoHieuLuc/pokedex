@@ -26,9 +26,7 @@ const PageLayout = ({ children }: Props) => {
           </ReactQuerySuspense>
         </div>
       </div>
-      <Navbar align='end' justify='end'>
-        <BottomNav />
-      </Navbar>
+      <BottomNav />
     </Layout>
   );
 };

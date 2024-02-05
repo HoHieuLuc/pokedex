@@ -15,17 +15,23 @@ export const BottomNav = () => {
   }
 
   return (
-    <Navbar align='flex-end' justify='flex-end'>
-      <GameButton label={'Pick + Flip Page'} icon={<GameButton.IconPick />} />
+    <Navbar align='center' justify='flex-end'>
+      <GameButton
+        label={'Pick + Flip Page'}
+        icon={<GameButton.IconPickFlip />}
+        title={`Press ${hotkeys.ArrowLeft}/${hotkeys.ArrowRight} button`}
+      />
       <GameButton
         label={'Check'}
-        icon={<GameButton.Icon label={hotkeys.A} />}
+        icon={<GameButton.Icon label='A' />}
         onClick={() => triggerGameHotkey({ key: hotkeys.A })}
+        title={`Press ${hotkeys.A} button`}
       />
       <GameButton
         label={'Cancel'}
-        icon={<GameButton.Icon label={hotkeys.B} />}
+        icon={<GameButton.Icon label='B' />}
         onClick={() => triggerGameHotkey({ key: hotkeys.B })}
+        title={`Press ${hotkeys.B} button`}
       />
     </Navbar>
   );

@@ -20,7 +20,11 @@ const PokemonCardModal = ({ ...props }: Props) => {
         content: classes.content,
       }}
     >
-      <ModalContent>{pokemon && <PokemonCardModalContent pokemon={pokemon} />}</ModalContent>
+      <ModalContent>
+        <div className={classes['content-inner']}>
+          {pokemon && <PokemonCardModalContent pokemon={pokemon} />}
+        </div>
+      </ModalContent>
     </ModalRoot>
   );
 };
