@@ -32,7 +32,7 @@
   color: var(--fr-white-shadow);
   font-size: 35px;
   background: var(--_bg);
-  width: calc(var(--_width));
+  min-width: calc(var(--_width));
   height: var(--_height);
   margin-left: var(--_radius);
   margin-right: var(--_radius);

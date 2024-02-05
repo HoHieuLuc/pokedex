@@ -2,6 +2,8 @@ import { PokemonArea, PokemonCard } from '@/app/fire-red/pokemon/_components';
 import { fireRedHook } from '@/app/fire-red';
 import classes from './PokemonCardModalContent.module.css';
 import { useSearchParams } from 'next/navigation';
+import { useGameHotkeys } from '@/hooks';
+import { playPokemonCry } from '@/pokemon';
 
 interface Props {
   pokemon: string;
@@ -11,6 +13,10 @@ const PokemonCardModalContent = ({ pokemon }: Props) => {
   const { data, isLoading } = fireRedHook.useByName(pokemon);
   const searchParams = useSearchParams();
   const tab = searchParams.get('tab');
+
+  useGameHotkeys({
+    Start: () => data && void playPokemonCry({ id: data.id, type: 'legacy' }),
+  });
 
   if (isLoading || !data) {
     return <div className={classes.root}></div>;

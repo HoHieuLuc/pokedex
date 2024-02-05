@@ -6,6 +6,7 @@ import { useGameHotkeys, useNavigate, useSelectedIndex } from '@/hooks';
 import { POKEDEX_RANGES } from '@/config';
 import { useEffect } from 'react';
 import PokemonArea from '../PokemonArea/PokemonArea';
+import { playPokemonCry } from '@/pokemon';
 
 interface Props {
   name: string;
@@ -77,6 +78,7 @@ const PokemonPage = ({ name }: Props) => {
     },
     ArrowUp: () => handleArrows('previous'),
     ArrowDown: () => handleArrows('next'),
+    Start: () => data && void playPokemonCry({ id: data.id, type: 'legacy' }),
   });
 
   if (isLoading || !data) {

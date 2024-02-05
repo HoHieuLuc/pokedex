@@ -2,6 +2,7 @@
 
 import { GameButton, Navbar } from '@/app/fire-red/_components';
 import { triggerGameHotkey, useGameHotkeys } from '@/hooks';
+import { Flex } from '@mantine/core';
 import { useSearchParams } from 'next/navigation';
 
 const BottomNav = () => {
@@ -10,19 +11,27 @@ const BottomNav = () => {
   const hotkeys = useGameHotkeys({});
 
   return (
-    <Navbar align='center' justify='flex-end'>
+    <Navbar align='center' justify='space-between'>
       <GameButton
-        label={tab === 'area' ? 'cancel' : 'next data'}
-        icon={<GameButton.Icon label='A' />}
-        onClick={() => triggerGameHotkey({ key: hotkeys.A })}
-        title={`Press ${hotkeys.A} button`}
+        label='cry'
+        icon={<GameButton.Icon label='start' />}
+        onClick={() => triggerGameHotkey({ key: hotkeys.Start })}
+        title={`Press ${hotkeys.Start} button`}
       />
-      <GameButton
-        label={tab === 'area' ? 'previous data' : 'cancel'}
-        icon={<GameButton.Icon label='B' />}
-        onClick={() => triggerGameHotkey({ key: hotkeys.B })}
-        title={`Press ${hotkeys.B} button`}
-      />
+      <Flex>
+        <GameButton
+          label={tab === 'area' ? 'cancel' : 'next data'}
+          icon={<GameButton.Icon label='A' />}
+          onClick={() => triggerGameHotkey({ key: hotkeys.A })}
+          title={`Press ${hotkeys.A} button`}
+        />
+        <GameButton
+          label={tab === 'area' ? 'previous data' : 'cancel'}
+          icon={<GameButton.Icon label='B' />}
+          onClick={() => triggerGameHotkey({ key: hotkeys.B })}
+          title={`Press ${hotkeys.B} button`}
+        />
+      </Flex>
     </Navbar>
   );
 };

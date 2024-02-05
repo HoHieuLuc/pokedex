@@ -8,6 +8,7 @@ interface GameHotkeys {
   ArrowRight: string;
   ArrowUp: string;
   ArrowDown: string;
+  Start: string;
 }
 
 const defaultValue: GameHotkeys = {
@@ -17,6 +18,7 @@ const defaultValue: GameHotkeys = {
   ArrowRight: 'ArrowRight',
   ArrowUp: 'ArrowUp',
   ArrowDown: 'ArrowDown',
+  Start: 'Enter',
 };
 
 type UseGameHotkeysProps = {
