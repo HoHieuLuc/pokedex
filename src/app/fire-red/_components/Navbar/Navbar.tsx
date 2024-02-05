@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import classes from './Navbar.module.css';
 
 interface Props extends GroupProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const Navbar = ({ children, ...props }: Props) => {

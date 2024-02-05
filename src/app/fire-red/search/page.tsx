@@ -9,4 +9,8 @@ const Page = () => {
   );
 };
 
+export const metadata = {
+  title: 'Pokedex | Fire Red - Search',
+};
+
 export default Page;

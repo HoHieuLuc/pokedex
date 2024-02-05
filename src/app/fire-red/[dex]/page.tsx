@@ -1,4 +1,6 @@
+import { Metadata } from 'next';
 import { PokemonListPage } from './_components';
+import { capitalize } from '@/utils';
 
 interface Props {
   params: {
@@ -21,6 +23,12 @@ export function generateStaticParams() {
       dex: 'national',
     },
   ];
+}
+
+export function generateMetadata({ params }: Props): Metadata {
+  return {
+    title: `Pokedex | Fire Red - ${capitalize(params.dex)} dex`,
+  };
 }
 
 export const dynamicParams = false;

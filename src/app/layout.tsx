@@ -4,7 +4,7 @@ import Providers from './providers';
 
 export const metadata = {
   title: 'Pokedex',
-  description: 'I am using Mantine with Next.js!',
+  description: 'A collection of Pokédex that looks somewhat like those in the game.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
