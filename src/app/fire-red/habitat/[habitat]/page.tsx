@@ -1,6 +1,7 @@
 import { PokemonHabitat } from '@/pokemon';
 import { PokemonHabitatPage } from '../_components';
 import { habitats } from './habitats';
+import { Suspense } from 'react';
 
 interface Props {
   params: {
@@ -10,9 +11,9 @@ interface Props {
 
 const Page = ({ params }: Props) => {
   return (
-    <>
+    <Suspense>
       <PokemonHabitatPage key={params.habitat} habitat={params.habitat} />
-    </>
+    </Suspense>
   );
 };
 

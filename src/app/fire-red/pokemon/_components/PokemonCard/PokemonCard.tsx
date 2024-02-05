@@ -48,7 +48,9 @@ const PokemonCard = (props: Props) => {
       </div>
       <div className={classes.divider}></div>
       <div className={classes.description}>
-        <Text>{flavorText || 'ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᚲ ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᛏ ᛏᚨᛏ ᛒᚱᚨ ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᚲ ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᛏ ᛏᚨᛏ ᛒᚱᚨ'}</Text>
+        <Text>
+          {flavorText || 'ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᚲ ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᛏ ᛏᚨᛏ ᛒᚱᚨ ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᚲ ᚷᚨᚺ ᛉᚨᚾ ᛏᚨᛏ ᛏᚨᛏ ᛒᚱᚨ'}
+        </Text>
       </div>
     </div>
   );

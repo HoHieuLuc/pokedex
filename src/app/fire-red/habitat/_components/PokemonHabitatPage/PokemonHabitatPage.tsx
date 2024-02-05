@@ -1,7 +1,7 @@
 'use client';
 
 import { PokemonHabitat } from '@/pokemon';
-import { Carousel, CarouselSlide } from '@mantine/carousel';
+import { Carousel } from '@mantine/carousel';
 import PokemonAvatar from '../PokemonAvatar/PokemonAvatar';
 import { PokemonSprites } from '@/types';
 import classes from './PokemonHabitatPage.module.css';
@@ -39,7 +39,7 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
   }
 
   const slides = currentHabitats.map((ids, index) => (
-    <CarouselSlide key={index}>
+    <Carousel.Slide key={index}>
       <PokemonAvatar.Wrapper pageLength={ids.length}>
         {ids.map((id, _index) => (
           <PokemonAvatar
@@ -53,7 +53,7 @@ const PokemonHabitatPage = ({ habitat }: Props) => {
           />
         ))}
       </PokemonAvatar.Wrapper>
-    </CarouselSlide>
+    </Carousel.Slide>
   ));
 
   return (

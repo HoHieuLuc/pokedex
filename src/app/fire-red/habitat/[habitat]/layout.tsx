@@ -1,8 +1,9 @@
 import { PokemonHabitat } from '@/pokemon';
-import { Layout, Navbar } from '../../_components';
+import { Layout } from '../../_components';
 import classes from './layout.module.css';
 import clsx from 'clsx';
-import { TopNav } from '../_components';
+import { BottomNav, TopNav, TopNavFallback } from '../_components';
+import { Suspense } from 'react';
 
 interface Props {
   children: React.ReactNode;
@@ -14,13 +15,15 @@ interface Props {
 const PageLayout = ({ children, params }: Props) => {
   return (
     <Layout>
-      <TopNav habitat={params.habitat} />
+      <Suspense fallback={<TopNavFallback habitat={params.habitat} />}>
+        <TopNav habitat={params.habitat} />
+      </Suspense>
       <div className='main' data-variant='details'>
         <div className={clsx('container', classes.container)}>{children}</div>
       </div>
-      <Navbar align='end' justify='end'>
-        A
-      </Navbar>
+      <Suspense>
+        <BottomNav />
+      </Suspense>
     </Layout>
   );
 };

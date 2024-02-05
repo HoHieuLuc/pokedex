@@ -19,9 +19,7 @@ const PageLayout = ({ children }: Props) => {
       <div className='main' data-variant='details'>
         <div className={clsx('container', classes.container)}>{children}</div>
       </div>
-      <Navbar align='end' justify='end'>
-        <BottomNav />
-      </Navbar>
+      <BottomNav />
     </Layout>
   );
 };

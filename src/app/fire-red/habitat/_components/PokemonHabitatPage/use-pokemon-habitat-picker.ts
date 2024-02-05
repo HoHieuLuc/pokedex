@@ -62,28 +62,39 @@ const usePokemonHabitatPicker = ({ habitat }: UsePokemonPickerProps) => {
     if (pokemonIndex !== -1) {
       const pokemon = availablePokemons[pokemonIndex];
       setActiveIndex(pokemonIndex);
-      pokemonModal.open(pokemon);
+      return pokemonModal.open(pokemon);
     }
+    pokemonModal.close();
   }, [pokemons]);
 
   const handleAButton = () => {
     if (!pokemons) {
       return;
     }
-
-    const pokemon = pokemons[currentHabitats[page][activeIndex]];
-    pokemonModal.open(pokemon);
+    if (!pokemonModalOpened) {
+      const pokemon = pokemons[currentHabitats[page][activeIndex]];
+      return pokemonModal.open(pokemon);
+    }
+    const tab = navigate.searchParams.get('tab');
+    if (tab === 'area') {
+      return pokemonModal.close();
+    }
+    navigate.setSearchParams({
+      tab: 'area',
+    });
   };
 
   const handleBButton = () => {
-    if (pokemonModalOpened) {
-      navigate.setSearchParams({
-        pokemon: undefined,
-      });
-      pokemonModal.close();
-    } else {
-      navigate.push('/fire-red');
+    if (!pokemonModalOpened) {
+      return navigate.push('/fire-red');
     }
+    const tab = navigate.searchParams.get('tab');
+    if (tab === 'area') {
+      return navigate.setSearchParams({
+        tab: undefined,
+      });
+    }
+    pokemonModal.close();
   };
 
   const handleArrowLeft = useCallback(

@@ -13,9 +13,13 @@ const usePokemonModal = () => {
     _open();
   };
 
+  /**
+   * Close the modal and clear search params.
+   */
   const close = () => {
     navigate.setSearchParams({
       pokemon: undefined,
+      tab: undefined,
     });
     _close();
   };

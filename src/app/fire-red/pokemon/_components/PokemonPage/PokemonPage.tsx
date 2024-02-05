@@ -83,33 +83,31 @@ const PokemonPage = ({ name }: Props) => {
     return <></>;
   }
 
+  const sprite =
+    data.sprites.versions['generation-iii']?.['firered-leafgreen']?.frontDefault ||
+    data.sprites.versions['generation-iii']?.['emerald']?.frontDefault ||
+    data.sprites.frontDefault;
+
+  const icon =
+    data.sprites.versions['generation-vii']?.['icons']?.frontDefault ||
+    data.sprites.versions['generation-viii']?.['icons']?.frontDefault ||
+    data.sprites.frontDefault;
+
   return (
     <>
       {tab === 'area' ? (
         <PokemonArea
           {...data}
           index={data.pokedexNumbers['national']}
-          sprite={
-            data.sprites.versions['generation-iii']?.['firered-leafgreen']?.frontDefault ||
-            data.sprites.versions['generation-iii']?.['emerald']?.frontDefault ||
-            data.sprites.frontDefault
-          }
-          icon={
-            data.sprites.versions['generation-vii']?.['icons']?.frontDefault ||
-            data.sprites.versions['generation-viii']?.['icons']?.frontDefault ||
-            data.sprites.frontDefault
-          }
+          sprite={sprite}
+          icon={icon}
         />
       ) : (
         <PokemonCard
           {...data}
           index={data.pokedexNumbers['national']}
           flavorText={data.flavorTexts['firered']}
-          sprite={
-            data.sprites.versions['generation-iii']?.['firered-leafgreen']?.frontDefault ||
-            data.sprites.versions['generation-iii']?.['emerald']?.frontDefault ||
-            data.sprites.frontDefault
-          }
+          sprite={sprite}
         />
       )}
     </>

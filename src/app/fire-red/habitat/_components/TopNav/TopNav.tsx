@@ -12,7 +12,7 @@ interface Props {
   habitat: PokemonHabitat;
 }
 
-const TopNav = ({ habitat }: Props) => {
+export const TopNav = ({ habitat }: Props) => {
   const searchParams = useSearchParams();
   const currentHabitats = habitats[habitat];
 
@@ -40,4 +40,16 @@ const TopNav = ({ habitat }: Props) => {
     </Navbar>
   );
 };
-export default TopNav;
+
+export const TopNavFallback = ({ habitat }: Props) => {
+  return (
+    <Navbar className={classes.root} align='center' justify='space-between'>
+      <Text variant='white' fz='var(--fr-fz-lg)'>
+        {POKEMON_HABITATS[habitat]} {POKEMON}
+      </Text>
+      <Text className={classes.page} variant='white' fz='var(--fr-fz-lg)'>
+        <span>Page</span> ?/?
+      </Text>
+    </Navbar>
+  );
+};

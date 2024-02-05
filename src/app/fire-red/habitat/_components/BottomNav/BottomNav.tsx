@@ -3,26 +3,30 @@
 import { GameButton, Navbar } from '@/app/fire-red/_components';
 import { triggerGameHotkey, useGameHotkeys } from '@/hooks';
 import { useSearchParams } from 'next/navigation';
+import { BottomNav as PBottomNav } from '@/app/fire-red/pokemon/_components';
 
-const BottomNav = () => {
+export const BottomNav = () => {
   const searchParams = useSearchParams();
-  const tab = searchParams.get('tab');
+  const pokemon = searchParams.get('pokemon');
   const hotkeys = useGameHotkeys({});
 
+  if (pokemon) {
+    return <PBottomNav />;
+  }
+
   return (
-    <Navbar align='end' justify='end'>
+    <Navbar align='flex-end' justify='flex-end'>
+      <GameButton label={'Pick + Flip Page'} icon={<GameButton.IconPick />} />
       <GameButton
-        label={tab === 'area' ? 'cancel' : 'next data'}
+        label={'Check'}
         icon={<GameButton.Icon label={hotkeys.A} />}
         onClick={() => triggerGameHotkey({ key: hotkeys.A })}
       />
       <GameButton
-        label={tab === 'area' ? 'previous data' : 'cancel'}
+        label={'Cancel'}
         icon={<GameButton.Icon label={hotkeys.B} />}
         onClick={() => triggerGameHotkey({ key: hotkeys.B })}
       />
     </Navbar>
   );
 };
-
-export default BottomNav;
