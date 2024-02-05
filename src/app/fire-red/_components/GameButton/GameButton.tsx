@@ -19,7 +19,11 @@ const IconPick = () => {
 
 const IconPickFlip = () => {
   return (
-    <Image src='/assets/fire-red/icon-pick-flip.png' alt='icon pick' className={classes['icon-pick']} />
+    <Image
+      src='/assets/fire-red/icon-pick-flip.png'
+      alt='icon pick'
+      className={classes['icon-pick']}
+    />
   );
 };
 

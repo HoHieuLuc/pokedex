@@ -1,7 +1,9 @@
+import { createMeta } from '@/app/fire-red/_storybook';
 import PokemonCard from './PokemonCard';
 
 export default {
   title: 'Fire Red/PokemonCard',
+  ...createMeta(),
 };
 
 export const Default = () => (

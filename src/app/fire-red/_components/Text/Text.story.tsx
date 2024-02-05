@@ -1,6 +1,7 @@
+import { createMeta } from '../../_storybook';
 import Text from './Text';
 
-export default { title: 'Fire Red/Text' };
+export default { title: 'Fire Red/Text', ...createMeta() };
 
 export const Default = () => {
   return <Text>Fire red</Text>;

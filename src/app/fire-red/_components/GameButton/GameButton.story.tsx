@@ -1,7 +1,9 @@
+import { createMeta } from '../../_storybook';
 import GameButton from './GameButton';
 
 export default {
   title: 'Fire Red/GameButton',
+  ...createMeta(),
 };
 
 export const Default = () => {

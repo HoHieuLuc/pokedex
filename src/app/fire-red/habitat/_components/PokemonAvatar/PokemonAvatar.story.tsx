@@ -2,11 +2,9 @@ import { createMeta } from '@/app/fire-red/_storybook';
 import PokemonAvatar from './PokemonAvatar';
 import { Text } from '@/app/fire-red/_components';
 
-const meta = createMeta();
-
 export default {
   title: 'Fire Red / PokemonAvatar',
-  ...meta,
+  ...createMeta(),
 };
 
 const defaultProps = {
@@ -19,11 +17,19 @@ const defaultProps = {
 };
 
 export const Default = () => {
-  return <PokemonAvatar {...defaultProps} />;
+  return (
+    <PokemonAvatar.Wrapper pageLength={1} h={450}>
+      <PokemonAvatar {...defaultProps} />
+    </PokemonAvatar.Wrapper>
+  );
 };
 
 export const Active = () => {
-  return <PokemonAvatar {...defaultProps} active />;
+  return (
+    <PokemonAvatar.Wrapper pageLength={1} h={450}>
+      <PokemonAvatar {...defaultProps} active />
+    </PokemonAvatar.Wrapper>
+  );
 };
 
 export const Positions = () => {
@@ -47,7 +53,7 @@ export const Positions = () => {
       <Text variant='white' fz={30}>
         Page length: 3
       </Text>
-      <PokemonAvatar.Wrapper pageLength={3} h={500}>
+      <PokemonAvatar.Wrapper pageLength={3} h={600}>
         <PokemonAvatar {...defaultProps} position={1} />
         <PokemonAvatar {...defaultProps} position={2} />
         <PokemonAvatar {...defaultProps} position={3} />
@@ -56,7 +62,7 @@ export const Positions = () => {
       <Text variant='white' fz={30}>
         Page length: 4
       </Text>
-      <PokemonAvatar.Wrapper pageLength={4} h={500}>
+      <PokemonAvatar.Wrapper pageLength={4} h={600}>
         <PokemonAvatar {...defaultProps} position={1} />
         <PokemonAvatar {...defaultProps} position={2} />
         <PokemonAvatar {...defaultProps} position={3} />

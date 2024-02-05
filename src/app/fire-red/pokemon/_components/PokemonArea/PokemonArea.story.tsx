@@ -1,15 +1,10 @@
 import type { Meta } from '@storybook/react';
 import PokemonArea from './PokemonArea';
+import { createMeta } from '@/app/fire-red/_storybook';
 
 export default {
   title: 'fire-red/Pokemon Area',
-  decorators: [
-    (Story) => (
-      <div style={{ margin: 30 }}>
-        <Story />
-      </div>
-    ),
-  ],
+  ...createMeta(),
 } as Meta;
 
 export const Default = () => {

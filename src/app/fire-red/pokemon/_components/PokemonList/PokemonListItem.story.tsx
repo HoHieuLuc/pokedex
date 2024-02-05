@@ -1,7 +1,8 @@
 import { PokedexNumbers, Pokemon } from '@/pokemon';
 import PokemonListItem from './PokemonListItem';
+import { createMeta } from '@/app/fire-red/_storybook';
 
-export default { title: 'Fire Red/PokemonListItem' };
+export default { title: 'Fire Red/PokemonListItem', ...createMeta() };
 
 const pokemon: Omit<Pokemon, 'sprites'> = {
   id: 1,

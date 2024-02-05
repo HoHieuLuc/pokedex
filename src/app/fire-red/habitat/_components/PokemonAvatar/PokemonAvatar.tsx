@@ -24,7 +24,9 @@ const PokemonAvatar = ({ position, active, sprites, index, name, onClick }: Prop
           <Text className='name'>{name}</Text>
         </div>
         <div className='divider'></div>
-        <Text className='skeleton' truncate>ᛗᛁᛖ ᚾᛖᚷ ᛟ ᚾᚾᚨᚺᚷᛁᛖ</Text>
+        <Text className='skeleton' truncate>
+          ᛗᛁᛖ ᚾᛖᚷ ᛟ ᚾᚾᚨᚺᚷᛁᛖ
+        </Text>
       </div>
     </div>
   );
