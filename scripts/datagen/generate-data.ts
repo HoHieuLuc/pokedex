@@ -75,12 +75,28 @@ const getAllPokemonSpecies = async () => {
   });
 };
 
+const getAllLocations = async () => {
+  logger.default.log('Getting all locations...');
+  const { data } = await axiosClient.get<ResourceList<ResourceData>>('location', {
+    params: {
+      limit,
+    },
+  });
+
+  return getResourceDetails({
+    data: data.results,
+    queryFn: (location) => datagenService.getLocation(location.name),
+    resourceName: 'locations',
+  });
+};
+
 const generateData = async () => {
   const saveDir = getPath('public/data');
 
   await fs.ensureDir(saveDir);
   await fs.ensureDir(cache.CACHE_DIR);
 
+  // pokemons
   const pokemonDetails = await getAllPokemons();
   const pokemonSpecies = await getAllPokemonSpecies();
   const pokemonSpeciesDictionary = toDictionary({
@@ -114,12 +130,26 @@ const generateData = async () => {
     };
   });
 
+  // sprites
   const savedPokemonSprites = pokemonDetails.map((pokemon) => {
     return {
       id: pokemon.id,
       sprites: pokemon.sprites,
     };
   });
+
+  // locations
+  const locations = await getAllLocations();
+  const savedLocations = locations.map((location) => ({
+    id: location.id,
+    name: location.name,
+    label: location.names.find((n) => n.language.name === 'en')?.name || location.name,
+    areas: toDictionary({
+      data: location.areas,
+      key: (item) => item.name,
+      value: () => 1,
+    }),
+  }));
 
   logger.default.log('Writing data...');
   await file.writeJSON(`${saveDir}/pokemon.json`, savedPokemonDetails);
@@ -149,6 +179,9 @@ const generateData = async () => {
       return value;
     },
   });
+
+  await file.writeJSON(`${saveDir}/location.json`, savedLocations);
+
   logger.default.success('All done!');
 };
 

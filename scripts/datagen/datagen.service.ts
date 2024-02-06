@@ -1,5 +1,5 @@
 import { axiosClient } from '@/lib';
-import { PokemonResponse, PokemonSpeciesResponse } from '@/types';
+import { Location, PokemonResponse, PokemonSpeciesResponse } from '@/types';
 import { cache, createLogger } from '../utils';
 
 const logger = createLogger('datagen');
@@ -27,7 +27,12 @@ const getPokemonSpecies = async (name: string) => {
   return get<PokemonSpeciesResponse>(`/pokemon-species/${name}`);
 };
 
+const getLocation = async (name: string) => {
+  return get<Location>(`/location/${name}`);
+};
+
 export default {
   getPokemon,
   getPokemonSpecies,
+  getLocation,
 };
