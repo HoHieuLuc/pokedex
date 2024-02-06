@@ -2,11 +2,9 @@ import { Metadata } from 'next';
 import { PokemonPage } from '../_components';
 import classes from './page.module.css';
 import { capitalize } from '@/utils';
-import fs from 'fs-extra';
-import path from 'path';
-import { Pokemon } from '@/pokemon';
 import { POKEDEX_RANGES } from '@/config';
 import { Suspense } from 'react';
+import { file } from '@/server';
 
 interface Props {
   params: {
@@ -25,10 +23,7 @@ const Page = ({ params }: Props) => {
 };
 
 export async function generateStaticParams() {
-  // TODO: refactor this
-  const pokemons = (await fs.readJSON(
-    path.join(process.cwd(), '/public/data/pokemon.json'),
-  )) as Array<Pokemon>;
+  const pokemons = await file.readPokemons();
 
   return pokemons
     .filter((pokemon) => {
