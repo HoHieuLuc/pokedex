@@ -31,7 +31,7 @@
     display: block;
     height: calc(var(--_height) - (var(--_radius) * 2));
     background: var(--_bg);
-    width: calc(var(--_radius) + 2px);
+    width: calc(var(--_radius) + 1px);
     position: absolute;
   }
 
