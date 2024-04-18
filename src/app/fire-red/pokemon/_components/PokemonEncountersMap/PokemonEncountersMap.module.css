@@ -1,0 +1,27 @@
+.root {
+  display: grid;
+  grid-template-columns: repeat(22, 16px);
+  gap: 1px;
+}
+
+.tile {
+  width: 16px;
+  height: 16px;
+  background-color: greenyellow;
+
+  &[data-type='route'] {
+    background-color: yellow;
+  }
+
+  &[data-type='route-indoor'] {
+    background-color: blue;
+  }
+
+  &[data-type='city'] {
+    background-color: red;
+  }
+
+  &[data-type='city-indoor'] {
+    background-color: purple;
+  }
+}
